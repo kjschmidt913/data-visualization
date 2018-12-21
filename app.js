@@ -8,7 +8,7 @@ var initStackedBarChart = {
                 top: 20,
                 right: 20,
                 bottom: 30,
-                left: 50
+                left: 80
             },
             parseDate = d3.timeParse("%m/%Y"),
             width = 960 - margin.left - margin.right,
@@ -17,7 +17,7 @@ var initStackedBarChart = {
             yScale = d3.scaleBand().rangeRound([height, 0]).padding(0.1),
             color = d3.scaleOrdinal(d3.schemeCategory10),
             xAxis = d3.axisBottom(xScale),
-            yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%b")),
+            yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%b %Y")),
             svg = d3.select("#" + domEle).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
