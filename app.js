@@ -52,6 +52,10 @@ var initStackedBarChart = {
                 return color(i);
             });
 
+        var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
         layer.selectAll("rect")
             .data(function (d) {
                 return d;
@@ -71,11 +75,22 @@ var initStackedBarChart = {
                 d3.select(this).transition()
                     .duration('200')
                     .attr('opacity', '.7');
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                div.html(d[1] - d[0])
+                    .style("left", (d3.event.pageX+10) + "px")
+                    .style("top", (d3.event.pageY - 15) + "px");
+
+
             })
             .on('mouseout', function (d, i) {
                 d3.select(this).transition()
                     .duration('200')
                     .attr('opacity', '1');
+                div.transition()
+                    .duration('200')
+                    .style("opacity", 0);
             });
 
         svg.append("g")
@@ -113,6 +128,7 @@ var initStackedBarChart = {
             .text(function (d) {
                 return key[d]
             });
+
 
     }
 
