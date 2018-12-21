@@ -15,7 +15,7 @@ var initStackedBarChart = {
             height = 500 - margin.top - margin.bottom,
             xScale = d3.scaleLinear().rangeRound([0, width]),
             yScale = d3.scaleBand().rangeRound([height, 0]).padding(0.1),
-            color = d3.scaleOrdinal(d3.schemeCategory10),
+            color = d3.scaleOrdinal(d3.schemePaired),
             xAxis = d3.axisBottom(xScale),
             yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%b %Y")),
             svg = d3.select("#" + domEle).append("svg")
@@ -27,7 +27,7 @@ var initStackedBarChart = {
 
         var legendRectSize = 18;
         var legendSpacing = 4;
-        
+
         var stack = d3.stack()
             .keys(stackKey)
             .order(d3.stackOrder)
@@ -66,6 +66,16 @@ var initStackedBarChart = {
             .attr("height", yScale.bandwidth())
             .attr("width", function (d) {
                 return xScale(d[1]) - xScale(d[0])
+            })
+            .on('mouseover', function (d, i) {
+                d3.select(this).transition()
+                    .duration('200')
+                    .attr('opacity', '.7');
+            })
+            .on('mouseout', function (d, i) {
+                d3.select(this).transition()
+                    .duration('200')
+                    .attr('opacity', '1');
             });
 
         svg.append("g")
@@ -78,8 +88,8 @@ var initStackedBarChart = {
             .attr("transform", "translate(0,0)")
             .call(yAxis);
 
-        var legend = svg.selectAll('.legend') 
-            .data(color.domain()) 
+        var legend = svg.selectAll('.legend')
+            .data(color.domain())
             .enter()
             .append('g')
             .attr('class', 'legend')
@@ -103,7 +113,9 @@ var initStackedBarChart = {
             .text(function (d) {
                 return key[d]
             });
+
     }
+
 }
 var data = [{
     "date": "4/1854",
