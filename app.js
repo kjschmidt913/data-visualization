@@ -10,14 +10,14 @@ var initStackedBarChart = {
                 bottom: 30,
                 left: 80
             },
-            parseDate = d3.timeParse("%m/%Y"),
+            parseDate = d3.timeParse("%Y"),
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom,
             xScale = d3.scaleLinear().rangeRound([0, width]),
             yScale = d3.scaleBand().rangeRound([height, 0]).padding(0.1),
             color = d3.scaleOrdinal(d3.schemePaired),
             xAxis = d3.axisBottom(xScale),
-            yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%b %Y")),
+            yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%Y")),
             svg = d3.select("#" + domEle).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -34,14 +34,18 @@ var initStackedBarChart = {
             .offset(d3.stackOffsetNone);
 
         var layers = stack(data);
-        data.sort(function (a, b) {
-            return b.total - a.total;
-        });
+
+        //sorts with totals instead of by date
+        // data.sort(function (a, b) {
+        //     return b.total - a.total;
+        // });
         yScale.domain(data.map(function (d) {
             return parseDate(d.date);
         }));
+
+        //x max
         xScale.domain([0, d3.max(layers[layers.length - 1], function (d) {
-            return d[0] + d[1];
+            return 3000000;
         })]).nice();
 
         var layer = svg.selectAll(".layer")
@@ -134,151 +138,229 @@ var initStackedBarChart = {
 
 }
 var data = [{
-    "date": "4/1854",
-    "total": 8571,
-    "disease": 1,
-    "wounds": 0,
-    "other": 5
+    "date": "2016",
+    "total":2319475,
+    "Alzheimer's disease": 116103,
+    "Cancer": 598038,
+    "Chronic lower respiratory diseases": 154596,
+    "Diabetes": 80058,
+    "Unintentional injuries": 0,
+    "Heart disease": 635260,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide": 0
+
 }, {
-    "date": "5/1854",
-    "total": 23333,
-    "disease": 12,
-    "wounds": 0,
-    "other": 9
+    "date": "2015",
+    "total": 2712630,
+    "Alzheimer's disease": 110561,
+    "Cancer": 595930,
+    "Chronic lower respiratory diseases": 155041,
+    "Diabetes": 79535,
+    "Unintentional injuries": 0,
+    "Heart disease": 633842,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide": 0
 }, {
-    "date": "6/1854",
-    "total": 28333,
-    "disease": 11,
-    "wounds": 0,
-    "other": 6
+    "date": "2014",
+    "total": 2626418,
+    "Alzheimer's disease": 93541,
+    "Cancer": 591700,
+    "Chronic lower respiratory diseases": 147101,
+    "Diabetes": 76488,
+    "Unintentional injuries": 0,
+    "Heart disease": 614348,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide": 0
 }, {
-    "date": "7/1854",
-    "total": 28772,
-    "disease": 359,
-    "wounds": 0,
-    "other": 23
+    "date": "2013",
+    "total": 2596993,
+    "Alzheimer's disease": 84767,
+    "Cancer": 584881,
+    "Chronic lower respiratory diseases": 149205,
+    "Diabetes": 75578,
+    "Unintentional injuries": 0,
+    "Heart disease": 611105,
+    "Influenza and pneumonia": 0,
+    "Kidney disease":0 ,
+    "Stroke": 0,
+    "Suicide":0 
 }, {
-    "date": "8/1854",
-    "total": 30246,
-    "disease": 828,
-    "wounds": 1,
-    "other": 30
+    "date": "2012",
+    "total": 2543279,
+    "Alzheimer's disease": 83637,
+    "Cancer": 582623,
+    "Chronic lower respiratory diseases": 143489,
+    "Diabetes": 73932,
+    "Unintentional injuries": 0,
+    "Heart disease": 599711,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "9/1854",
-    "total": 30290,
-    "disease": 788,
-    "wounds": 81,
-    "other": 70
+    "date": "2011",
+    "total": 2515458,
+    "Alzheimer's disease": 84974,
+    "Cancer": 576691,
+    "Chronic lower respiratory diseases": 142943,
+    "Diabetes": 73831,
+    "Unintentional injuries":0 ,
+    "Heart disease": 596577,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "10/1854",
-    "total": 30643,
-    "disease": 503,
-    "wounds": 132,
-    "other": 128
+    "date": "2010",
+    "total": 2468435,
+    "Alzheimer's disease": 83494,
+    "Cancer": 574743,
+    "Chronic lower respiratory diseases": 138080,
+    "Diabetes": 69071,
+    "Unintentional injuries": 0,
+    "Heart disease": 597689,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "11/1854",
-    "total": 29736,
-    "disease": 844,
-    "wounds": 287,
-    "other": 106
+    "date": "2009",
+    "total": 2437163,
+    "Alzheimer's disease": 79003,
+    "Cancer": 567628,
+    "Chronic lower respiratory diseases": 137353,
+    "Diabetes": 68705,
+    "Unintentional injuries": 0,
+    "Heart disease": 599413,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "12/1854",
-    "total": 32779,
-    "disease": 1725,
-    "wounds": 114,
-    "other": 131
+    "date": "2008",
+    "total": 2471984,
+    "Alzheimer's disease": 82435,
+    "Cancer": 565469,
+    "Chronic lower respiratory diseases": 141090,
+    "Diabetes": 70553,
+    "Unintentional injuries": 0,
+    "Heart disease": 616828,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "1/1855",
-    "total": 32393,
-    "disease": 2761,
-    "wounds": 83,
-    "other": 324
+    "date": "2007",
+    "total": 2423712,
+    "Alzheimer's disease": 74632,
+    "Cancer": 562875,
+    "Chronic lower respiratory diseases": 127924,
+    "Diabetes": 71382,
+    "Unintentional injuries": 0,
+    "Heart disease": 616067,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "2/1855",
-    "total": 30919,
-    "disease": 2120,
-    "wounds": 42,
-    "other": 361
+    "date": "2006",
+    "total": 2426264,
+    "Alzheimer's disease": 72432,
+    "Cancer": 559888,
+    "Chronic lower respiratory diseases": 124583,
+    "Diabetes": 72449,
+    "Unintentional injuries": 0,
+    "Heart disease": 631636,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "3/1855",
-    "total": 30107,
-    "disease": 1205,
-    "wounds": 32,
-    "other": 172
+    "date": "2005",
+    "total": 2448017,
+    "Alzheimer's disease": 71599,
+    "Cancer": 559312,
+    "Chronic lower respiratory diseases": 130933,
+    "Diabetes": 75119,
+    "Unintentional injuries": 0,
+    "Heart disease": 652091,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "4/1855",
-    "total": 32252,
-    "disease": 477,
-    "wounds": 48,
-    "other": 57
+    "date": "2004",
+    "total": 2397615,
+    "Alzheimer's disease": 65965,
+    "Cancer": 553888,
+    "Chronic lower respiratory diseases": 121987,
+    "Diabetes": 73138,
+    "Unintentional injuries": 0,
+    "Heart disease": 652486,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "5/1855",
-    "total": 35473,
-    "disease": 508,
-    "wounds": 49,
-    "other": 37
+    "date": "2003",
+    "total": 2448288,
+    "Alzheimer's disease": 63457,
+    "Cancer": 556902,
+    "Chronic lower respiratory diseases": 126382,
+    "Diabetes": 74219,
+    "Unintentional injuries": 0,
+    "Heart disease": 685089,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "6/1855",
-    "total": 38863,
-    "disease": 802,
-    "wounds": 209,
-    "other": 31
+    "date": "2002",
+    "total": 2443387,
+    "Alzheimer's disease": 58866,
+    "Cancer": 557271,
+    "Chronic lower respiratory diseases": 124816,
+    "Diabetes": 73249,
+    "Unintentional injuries": 0,
+    "Heart disease": 696947,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "7/1855",
-    "total": 42647,
-    "disease": 382,
-    "wounds": 134,
-    "other": 33
+    "date": "2001",
+    "total": 2416425,
+    "Alzheimer's disease": 53852,
+    "Cancer": 553768,
+    "Chronic lower respiratory diseases": 123013,
+    "Diabetes": 71372,
+    "Unintentional injuries": 0,
+    "Heart disease": 700142,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }, {
-    "date": "8/1855",
-    "total": 44614,
-    "disease": 483,
-    "wounds": 164,
-    "other": 25
-}, {
-    "date": "9/1855",
-    "total": 47751,
-    "disease": 189,
-    "wounds": 276,
-    "other": 20
-}, {
-    "date": "10/1855",
-    "total": 46852,
-    "disease": 128,
-    "wounds": 53,
-    "other": 18
-}, {
-    "date": "11/1855",
-    "total": 37853,
-    "disease": 178,
-    "wounds": 33,
-    "other": 32
-}, {
-    "date": "12/1855",
-    "total": 43217,
-    "disease": 91,
-    "wounds": 18,
-    "other": 28
-}, {
-    "date": "1/1856",
-    "total": 44212,
-    "disease": 42,
-    "wounds": 2,
-    "other": 48
-}, {
-    "date": "2/1856",
-    "total": 43485,
-    "disease": 24,
-    "wounds": 0,
-    "other": 19
-}, {
-    "date": "3/1856",
-    "total": 46140,
-    "disease": 15,
-    "wounds": 0,
-    "other": 35
+    "date": "2000",
+    "total": 2403351,
+    "Alzheimer's disease": 49558,
+    "Cancer": 553091,
+    "Chronic lower respiratory diseases": 122009,
+    "Diabetes": 69301,
+    "Unintentional injuries": 0,
+    "Heart disease": 710760,
+    "Influenza and pneumonia": 0,
+    "Kidney disease": 0,
+    "Stroke": 0,
+    "Suicide":0
 }];
-var key = ["wounds", "other", "disease"];
+var key = ["Alzheimer's disease", "Cancer", "Chronic lower respiratory diseases","Diabetes", "Unintentional injuries", "Heart disease", "Influenza and pneumonia", "Kidney disease", "Stroke", "Suicide"];
 initStackedBarChart.draw({
     data: data,
     key: key,
