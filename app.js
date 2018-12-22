@@ -82,7 +82,8 @@ var initStackedBarChart = {
                 div.transition()
                     .duration(200)
                     .style("opacity", .9);
-                div.html(d[1] - d[0])
+                let num = (d[1] - d[0]).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+                div.html(num)
                     .style("left", (d3.event.pageX+10) + "px")
                     .style("top", (d3.event.pageY - 15) + "px");
 
