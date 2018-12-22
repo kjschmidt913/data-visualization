@@ -6,9 +6,9 @@ var initStackedBarChart = {
             data = config.data,
             margin = {
                 top: 20,
-                right: 20,
+                right: 40,
                 bottom: 30,
-                left: 80
+                left: 40
             },
             parseDate = d3.timeParse("%Y"),
             width = 960 - margin.left - margin.right,
@@ -19,7 +19,7 @@ var initStackedBarChart = {
             xAxis = d3.axisBottom(xScale),
             yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%Y")),
             svg = d3.select("#" + domEle).append("svg")
-            .attr("width", width + margin.left + margin.right)
+            .attr("width", 1000 + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -87,7 +87,6 @@ var initStackedBarChart = {
                     .style("left", (d3.event.pageX+10) + "px")
                     .style("top", (d3.event.pageY - 15) + "px");
 
-
             })
             .on('mouseout', function (d, i) {
                 d3.select(this).transition()
@@ -116,8 +115,8 @@ var initStackedBarChart = {
             .attr('transform', function (d, i) {
                 var height = legendRectSize + legendSpacing;
                 var offset = height * color.domain().length / 2;
-                var horz = 40 * legendRectSize;
-                var vert = i * height + offset;
+                var horz = 43 * legendRectSize;
+                var vert = i * height+7;
                 return 'translate(' + horz + ',' + vert + ')';
             });
 
