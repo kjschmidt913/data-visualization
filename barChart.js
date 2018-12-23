@@ -35,10 +35,10 @@ var initStackedBarChart = {
 
         var layers = stack(data);
 
-        //sorts with totals instead of by date
-        // data.sort(function (a, b) {
-        //     return b.total - a.total;
-        // });
+        //sorts data by date- lowest to highest
+        data.sort(function (a, b) {
+            return a.date - b.date;
+        });
         yScale.domain(data.map(function (d) {
             return parseDate(d.date);
         }));
