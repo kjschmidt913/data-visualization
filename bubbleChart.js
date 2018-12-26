@@ -206,12 +206,12 @@ dataset = {
     ]
 };
 
-var diameter = 800;
+var diameter = 900;
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var bubble = d3.pack(dataset)
     .size([diameter, diameter])
-    .padding(1.5);
+    .padding(1);
 
 var svg = d3.select("#bubble")
     .append("svg")
@@ -234,18 +234,18 @@ var node = svg.selectAll(".node")
     .append("g")
     .on('mouseover', function (d, i) {
         d3.select(this).transition()
-            .duration('200')
+            .duration('100')
             .attr('opacity', '.7');
         div.transition()
-            .duration(200)
+            .duration(100)
             .style("opacity", .9)
     })
     .on('mouseout', function (d, i) {
         d3.select(this).transition()
-            .duration('200')
+            .duration('100')
             .attr('opacity', '1');
         div.transition()
-            .duration('200')
+            .duration('100')
             .style("opacity", 0);
     })
     .attr("class", "node")
