@@ -211,7 +211,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
 var bubble = d3.pack(dataset)
     .size([diameter, diameter])
-    .padding(1);
+    .padding(.5);
 
 var svg = d3.select("#bubble")
     .append("svg")
@@ -264,7 +264,7 @@ node.append("text")
     .attr("dy", ".2em")
     .style("text-anchor", "middle")
     .text(function (d) {
-        return d.data.state.substring(0, d.r / 3);
+        return d.data.state;
     })
     .attr("font-family", "sans-serif")
     .attr("font-size", function (d) {
