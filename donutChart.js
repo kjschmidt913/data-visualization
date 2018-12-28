@@ -42,8 +42,8 @@ var pie = d3.pie()
     })
     .sort(null);
 
-var legendRectSize = 18;
-var legendSpacing = 4;
+var legendRectSize = 11;
+var legendSpacing = 7;
 
 var path = svg.selectAll('path')
     .data(pie(dataset))
@@ -54,40 +54,27 @@ var path = svg.selectAll('path')
         return color(d.data.title);
 
     });
-
-// path.on('mouseover', function (d) {
-//     var total = d3.sum(dataset.map(function (d) {
-//         return d.value;
-//     }));
-//     var percent = Math.round(1000 * d.data.value / total) / 10;
-//     tooltip.select('.label').html(d.data.title);
-//     tooltip.select('.count').html(d.data.value);
-//     tooltip.select('.percent').html(percent + '%');
-//     tooltip.style('display', 'block');
-// });
-
-// path.on('mouseout', function () {
-//     tooltip.style('display', 'none');
-// });
+//do mouseover stuff on path
 
 var legend = svg.selectAll('.legend')
     .data(color.domain())
     .enter()
     .append('g')
-    .attr('class', 'legend')
+    .attr('class', 'circle-legend')
     .attr('transform', function (d, i) {
         var height = legendRectSize + legendSpacing;
         var offset = height * color.domain().length / 2;
-        var horz = -2 * legendRectSize;
+        var horz = -2 * legendRectSize-13;
         var vert = i * height - offset;
         return 'translate(' + horz + ',' + vert + ')';
     });
 
-legend.append('rect')
-    .attr('width', legendRectSize)
-    .attr('height', legendRectSize)
+legend.append('circle')
     .style('fill', color)
-    .style('stroke', color);
+    .style('stroke', color)
+    .attr('cx', 0)
+    .attr('cy', 0)
+    .attr('r', '.4rem');
 
 legend.append('text')
     .attr('x', legendRectSize + legendSpacing)
