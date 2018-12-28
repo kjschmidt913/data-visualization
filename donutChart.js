@@ -42,7 +42,7 @@ var pie = d3.pie()
     })
     .sort(null);
 
-var legendRectSize = 11;
+var legendRectSize = 13;
 var legendSpacing = 7;
 
 var div = d3.select("body").append("div")
@@ -98,7 +98,7 @@ legend.append('circle')
     .style('stroke', color)
     .attr('cx', 0)
     .attr('cy', 0)
-    .attr('r', '.4rem');
+    .attr('r', '.5rem');
 
 legend.append('text')
     .attr('x', legendRectSize + legendSpacing)
