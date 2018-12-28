@@ -13,12 +13,12 @@ div.tooltip {
 div.tooltip-donut {	
     position: absolute;			
     text-align: center;								
-    padding: .2rem;				
-    background: #313639;
-    color: #f9f9f9;	
-    border: 0px;		
+    padding: .5rem;				
+    background: #FFFFFF;
+    color: #313639;	
+    border: 1px solid #313639;		
     border-radius: 8px;			
     pointer-events: none;
-    font-size: 1rem;			
+    font-size: 1.3rem;			
 }
 

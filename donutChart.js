@@ -63,9 +63,9 @@ var path = svg.selectAll('path')
             .duration('50')
             .attr('opacity', '.95');
         div.transition()
-            .duration(200)
-            .style("opacity", .9);
-        let num = d.value;
+            .duration(50)
+            .style("opacity", 1);
+        let num = (Math.round((d.value/1098)*100)).toString() + '%';
         div.html(num)
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
@@ -76,11 +76,9 @@ var path = svg.selectAll('path')
             .duration('50')
             .attr('opacity', '1');
         div.transition()
-            .duration('200')
+            .duration('50')
             .style("opacity", 0);
-
     });
-//do mouseover stuff on path
 
 var legend = svg.selectAll('.legend')
     .data(color.domain())
