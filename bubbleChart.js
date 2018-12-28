@@ -266,7 +266,6 @@ node.append("text")
     .text(function (d) {
         return d.data.state;
     })
-    .attr("font-family", "sans-serif")
     .attr("font-size", function (d) {
         return d.r / 5;
     })
@@ -278,7 +277,6 @@ node.append("text")
     .text(function (d) {
         return d.data.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     })
-    .attr("font-family", "Gill Sans", "Gill Sans MT")
     .attr("font-size", function (d) {
         return d.r / 5;
     })
