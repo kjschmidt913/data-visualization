@@ -45,6 +45,10 @@ var pie = d3.pie()
 var legendRectSize = 11;
 var legendSpacing = 7;
 
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip-donut")
+    .style("opacity", 0);
+
 var path = svg.selectAll('path')
     .data(pie(dataset))
     .enter()
@@ -52,6 +56,28 @@ var path = svg.selectAll('path')
     .attr('d', arc)
     .attr('fill', function (d, i) {
         return color(d.data.title);
+
+    })
+    .on('mouseover', function (d, i) {
+        d3.select(this).transition()
+            .duration('50')
+            .attr('opacity', '.95');
+        div.transition()
+            .duration(200)
+            .style("opacity", .9);
+        let num = d.value;
+        div.html(num)
+            .style("left", (d3.event.pageX + 10) + "px")
+            .style("top", (d3.event.pageY - 15) + "px");
+
+    })
+    .on('mouseout', function (d, i) {
+        d3.select(this).transition()
+            .duration('50')
+            .attr('opacity', '1');
+        div.transition()
+            .duration('200')
+            .style("opacity", 0);
 
     });
 //do mouseover stuff on path
@@ -64,7 +90,7 @@ var legend = svg.selectAll('.legend')
     .attr('transform', function (d, i) {
         var height = legendRectSize + legendSpacing;
         var offset = height * color.domain().length / 2;
-        var horz = -2 * legendRectSize-13;
+        var horz = -2 * legendRectSize - 13;
         var vert = i * height - offset;
         return 'translate(' + horz + ',' + vert + ')';
     });
