@@ -1,18 +1,26 @@
 var dataset = [{
         title: "Soft-serve",
-        value: 286
+        value: 286,
+        male: 27,
+        female: 25
     },
     {
         title: "Scooped",
-        value: 472
+        value: 472,
+        male: 42,
+        female: 44
     },
     {
         title: "No Preference",
-        value: 318
+        value: 318,
+        male: 30,
+        female: 28
     },
     {
         title: "Not Sure",
-        value: 22
+        value: 22,
+        male: 2,
+        female: 3
     }
 ];
 
