@@ -1,27 +1,19 @@
 var dataset = [{
-        title: "title one",
-        value: 74
+        title: "Soft-serve",
+        value: 286
     },
     {
-        title: "title two",
-        value: 85
+        title: "Scooped",
+        value: 472
     },
     {
-        title: "title 3",
-        value: 840
+        title: "No Preference",
+        value: 318
     },
     {
-        title: "title 4",
-        value: 4345
-    },
-    {
-        title: "title 5",
-        value: 300
-    },
-    {
-        title: "title 6",
-        value: 2000
-    },
+        title: "Not Sure",
+        value: 22
+    }
 ];
 
 var width = 360;
