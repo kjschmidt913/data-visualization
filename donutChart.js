@@ -23,6 +23,44 @@ var dataset = [{
         female: 3
     }
 ];
+var dataset2 = [{
+    title: "Soft-serve",
+    female: 25
+},
+{
+    title: "Scooped",
+    female: 44
+},
+{
+    title: "No Preference",
+    female: 28
+},
+{
+    title: "Not Sure",
+    female: 3
+}
+];
+var dataset3 = [{
+    title: "Soft-serve",
+    male: 27
+},
+{
+    title: "Scooped",
+    male: 42
+},
+{
+    title: "No Preference",
+    male: 30
+},
+{
+    title: "Not Sure",
+    male: 2
+}
+];
+
+
+
+
 
 var width = 360;
 var height = 360;
