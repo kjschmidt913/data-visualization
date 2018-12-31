@@ -1,4 +1,4 @@
-var dataset = [{
+var dataset1 = [{
         title: "Soft-serve",
         value: 286,
         male: 27,
@@ -23,45 +23,49 @@ var dataset = [{
         female: 3
     }
 ];
+
+
+//female
 var dataset2 = [{
-    title: "Soft-serve",
-    female: 25
-},
-{
-    title: "Scooped",
-    female: 44
-},
-{
-    title: "No Preference",
-    female: 28
-},
-{
-    title: "Not Sure",
-    female: 3
-}
+        title: "Soft-serve",
+        value: 25
+    },
+    {
+        title: "Scooped",
+        value: 44
+    },
+    {
+        title: "No Preference",
+        value: 28
+    },
+    {
+        title: "Not Sure",
+        value: 3
+    }
 ];
+
+//male
+
 var dataset3 = [{
-    title: "Soft-serve",
-    male: 27
-},
-{
-    title: "Scooped",
-    male: 42
-},
-{
-    title: "No Preference",
-    male: 30
-},
-{
-    title: "Not Sure",
-    male: 2
-}
+        title: "Soft-serve",
+        value: 27
+    },
+    {
+        title: "Scooped",
+        value: 42
+    },
+    {
+        title: "No Preference",
+        value: 30
+    },
+    {
+        title: "Not Sure",
+        value: 2
+    }
 ];
 
 
-
-
-
+var dataIndex = 1;
 var width = 360;
 var height = 360;
 var radius = Math.min(width, height) / 2;
@@ -96,7 +100,7 @@ var div = d3.select("body").append("div")
     .style("opacity", 0);
 
 var path = svg.selectAll('path')
-    .data(pie(dataset))
+    .data(pie(dataset1))
     .enter()
     .append('path')
     .attr('d', arc)
@@ -111,7 +115,7 @@ var path = svg.selectAll('path')
         div.transition()
             .duration(50)
             .style("opacity", 1);
-        let num = (Math.round((d.value/1098)*100)).toString() + '%';
+        let num = (Math.round((d.value / 1098) * 100)).toString() + '%';
         div.html(num)
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
@@ -151,4 +155,52 @@ legend.append('text')
     .attr('y', legendRectSize - legendSpacing)
     .text(function (d) {
         return d;
+    });
+
+
+//toggle code
+d3.select("body").append("button")
+    .text("change data")
+    .on("click", function () {
+
+
+        path.exit().remove(); //remove unneeded circles
+        path = svg.selectAll('path')
+            .data(pie(dataset2))
+            .enter()
+            .append('path')
+            .attr('d', arc)
+            .attr('fill', function (d, i) {
+                return color(d.data.title);
+
+            })
+            .transition()
+            .duration(500)
+            .on('mouseover', function (d, i) {
+                d3.select(this).transition()
+                    .duration('50')
+                    .attr('opacity', '.95');
+                div.transition()
+                    .duration(50)
+                    .style("opacity", 1);
+                let num = (d.value).toString() + '%';
+                div.html(num)
+                    .style("left", (d3.event.pageX + 10) + "px")
+                    .style("top", (d3.event.pageY - 15) + "px");
+
+            })
+            .on('mouseout', function (d, i) {
+                d3.select(this).transition()
+                    .duration('50')
+                    .attr('opacity', '1');
+                div.transition()
+                    .duration('50')
+                    .style("opacity", 0);
+            });
+
+        //update all circles to new positions
+
+
+        // d3.select("text").text("dataset" + dataIndex);
+
     });
