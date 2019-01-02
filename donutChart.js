@@ -72,7 +72,9 @@ var width = 360;
 var height = 360;
 var radius = Math.min(width, height) / 2;
 
-var color = d3.scaleOrdinal(d3.schemeCategory20c);
+// var color = d3.scaleOrdinal(d3.schemeCategory20c);
+var color = d3.scaleOrdinal()
+    .range(["#5A39AC", "#DD98D6", "#E7C820", "#08B2B2"]);
 
 var svg = d3.select('#donut')
     .append('svg')
@@ -112,7 +114,7 @@ var path = svg.selectAll('path')
     .on('mouseover', function (d, i) {
         d3.select(this).transition()
             .duration('50')
-            .attr('opacity', '.95');
+            .attr('opacity', '.85');
         div.transition()
             .duration(50)
             .style("opacity", 1);
