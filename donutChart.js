@@ -108,7 +108,6 @@ var path = svg.selectAll('path')
     .attr('d', arc)
     .attr('fill', function (d, i) {
         return color(d.data.title);
-
     })
     .on('mouseover', function (d, i) {
         d3.select(this).transition()
