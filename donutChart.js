@@ -159,6 +159,7 @@ legend.append('text')
         return d;
     });
 
+
 function change(data) {
     var pie = d3.pie()
         .value(function (d) {
@@ -176,8 +177,7 @@ function change(data) {
     var arc = d3.arc()
         .innerRadius(radius - donutWidth)
         .outerRadius(radius);
-    path.attr("d", arc);// redrawing the path
-
+    path.attr("d", arc); // redrawing the path 
 }
 
 d3.select("button#a")
