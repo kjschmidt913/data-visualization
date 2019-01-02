@@ -160,6 +160,7 @@ legend.append('text')
     });
 
 
+
 function change(data) {
     var pie = d3.pie()
         .value(function (d) {
@@ -177,7 +178,7 @@ function change(data) {
     var arc = d3.arc()
         .innerRadius(radius - donutWidth)
         .outerRadius(radius);
-    path.attr("d", arc); // redrawing the path 
+    path.transition().duration(500).attr("d", arc); // redrawing the path with a smooth transition
 }
 
 d3.select("button#a")
