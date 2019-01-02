@@ -64,8 +64,6 @@ var dataset3 = [{
     }
 ];
 
-
-var dataIndex = 1;
 var width = 360;
 var height = 360;
 var radius = Math.min(width, height) / 2;
@@ -94,9 +92,6 @@ var pie = d3.pie()
 
 var legendRectSize = 13;
 var legendSpacing = 7;
-var labelArc = d3.arc()
-    .outerRadius(radius - 40)
-    .innerRadius(radius - 40);
 
 var div = d3.select("body").append("div")
     .attr("class", "tooltip-donut")
@@ -167,14 +162,20 @@ function change(data) {
         .value(function (d) {
             return d.value;
         })(data);
-    path = d3.select("#donut").selectAll("path").data(pie); // Compute the new angles
+
+    var width = 360;
+    var height = 360;
+    var radius = Math.min(width, height) / 2;
+    var donutWidth = 75;
+
+    path = d3.select("#donut")
+        .selectAll("path")
+        .data(pie); // Compute the new angles
     var arc = d3.arc()
         .innerRadius(radius - donutWidth)
         .outerRadius(radius);
-    path.attr("d", arc); // redrawing the path
-    d3.selectAll("text").data(pie).attr("transform", function (d) {
-        return "translate(" + labelArc.centroid(d) + ")";
-    }); // recomputing the centroid and translating the text accordingly.
+    path.attr("d", arc);// redrawing the path
+
 }
 
 d3.select("button#a")
