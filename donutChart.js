@@ -1,66 +1,70 @@
-var dataset1 = [{
+var totals = [{
         title: "Soft-serve",
         value: 286,
-        male: 27,
-        female: 25
+        all: 1098
     },
     {
         title: "Scooped",
         value: 472,
-        male: 42,
-        female: 44
+        all: 1098
     },
     {
         title: "No Preference",
         value: 318,
-        male: 30,
-        female: 28
+        all: 1098
     },
     {
         title: "Not Sure",
         value: 22,
-        male: 2,
-        female: 3
+        all: 1098
     }
 ];
 
 
 //female
-var dataset2 = [{
+var femaleData = [{
         title: "Soft-serve",
-        value: 25
+        value: 25,
+        all: 100
     },
     {
         title: "Scooped",
-        value: 44
+        value: 44,
+        all: 100
     },
     {
         title: "No Preference",
-        value: 28
+        value: 28,
+        all: 100
     },
     {
         title: "Not Sure",
-        value: 3
+        value: 3,
+        all: 100
     }
 ];
 
 //male
 
-var dataset3 = [{
+var maleData = [{
         title: "Soft-serve",
-        value: 27
+        value: 27,
+        all: 100
     },
     {
         title: "Scooped",
-        value: 42
+        value: 42,
+        all: 100
     },
     {
         title: "No Preference",
-        value: 30
+        value: 30,
+        all: 100
     },
     {
         title: "Not Sure",
-        value: 2
+        value: 2,
+        all: 100
     }
 ];
 
@@ -98,7 +102,7 @@ var div = d3.select("body").append("div")
     .style("opacity", 0);
 
 var path = svg.selectAll('path')
-    .data(pie(dataset1))
+    .data(pie(totals))
     .enter()
     .append('path')
     .attr('d', arc)
@@ -113,8 +117,7 @@ var path = svg.selectAll('path')
         div.transition()
             .duration(50)
             .style("opacity", 1);
-        // let num = (Math.round((d.value / 1098) * 100)).toString() + '%';
-        let num = d.value;
+        let num = (Math.round((d.value / d.data.all) * 100)).toString() + '%';
         div.html(num)
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
@@ -180,13 +183,13 @@ function change(data) {
 
 d3.select("button#a")
     .on("click", function () {
-        change(dataset1);
+        change(totals);
     })
 d3.select("button#b")
     .on("click", function () {
-        change(dataset2);
+        change(femaleData);
     })
 d3.select("button#c")
     .on("click", function () {
-        change(dataset3)
+        change(maleData)
     })
