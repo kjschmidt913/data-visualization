@@ -21,27 +21,35 @@
 
     <h3 class="mb-0 mt-4">US State Populations 2018</h3>
     <small>Source: <a href="https://www.census.gov/data/tables/time-series/demo/popest/2010s-national-total.html"
-        target="blank">United States Census Bureau</a></small>
+            target="blank">United States Census Bureau</a></small>
     <div id="bubble" class="mx-auto my-0"></div>
 
     <h3 class="mb-0 mt-4">Ice Cream Preferences in the US</h3>
     <small>Source: <a href="https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/np6jy2g6j4/7.9.18%20-%20Ice%20Cream%20Results.pdf"
-        target="blank">YouGov</a></small>
-        <!-- alternate link to use -->
-        <!-- https://today.yougov.com/topics/food/articles-reports/2018/07/10/most-popular-ice-creams -->
+            target="blank">YouGov</a></small>
+    <!-- alternate link to use -->
+    <!-- https://today.yougov.com/topics/food/articles-reports/2018/07/10/most-popular-ice-creams -->
     <div class="mx-auto col-lg-6 col-12 text-center">
+        <div class="buttons" style="width: 300px; text-align: center;">
+            <button id="a" style="width:50px;">A</button>
+            <button id="b" style="width:50px;">B</button>
+            <button id="c" style="width:50px;">C</button>
+        </div>
         <h5 class="mt-4 mb-4">Do you prefer soft-serve or scooped icecream?</h5>
         <div id="donut" class="mx-0 px-0 col-12"></div>
     </div>
 
-    
+    <div id="pie"></div>
+
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
-    
+
     <script src="barChart.js"></script>
     <script src="bubbleChart.js"></script>
     <script src="donutChart.js"></script>
+    <script src="pieChart.js"></script>
 
 </body>
 

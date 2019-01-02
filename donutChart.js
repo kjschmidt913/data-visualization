@@ -94,6 +94,9 @@ var pie = d3.pie()
 
 var legendRectSize = 13;
 var legendSpacing = 7;
+var labelArc = d3.arc()
+    .outerRadius(radius - 40)
+    .innerRadius(radius - 40);
 
 var div = d3.select("body").append("div")
     .attr("class", "tooltip-donut")
@@ -115,7 +118,8 @@ var path = svg.selectAll('path')
         div.transition()
             .duration(50)
             .style("opacity", 1);
-        let num = (Math.round((d.value / 1098) * 100)).toString() + '%';
+        // let num = (Math.round((d.value / 1098) * 100)).toString() + '%';
+        let num = d.value;
         div.html(num)
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
@@ -129,6 +133,7 @@ var path = svg.selectAll('path')
             .duration('50')
             .style("opacity", 0);
     });
+
 
 var legend = svg.selectAll('.legend')
     .data(color.domain())
@@ -157,50 +162,30 @@ legend.append('text')
         return d;
     });
 
+function change(data) {
+    var pie = d3.pie()
+        .value(function (d) {
+            return d.value;
+        })(data);
+    path = d3.select("#donut").selectAll("path").data(pie); // Compute the new angles
+    var arc = d3.arc()
+        .innerRadius(radius - donutWidth)
+        .outerRadius(radius);
+    path.attr("d", arc); // redrawing the path
+    d3.selectAll("text").data(pie).attr("transform", function (d) {
+        return "translate(" + labelArc.centroid(d) + ")";
+    }); // recomputing the centroid and translating the text accordingly.
+}
 
-//toggle code
-d3.select("body").append("button")
-    .text("change data")
+d3.select("button#a")
     .on("click", function () {
-
-
-        path.exit().remove(); //remove unneeded circles
-        path = svg.selectAll('path')
-            .data(pie(dataset2))
-            .enter()
-            .append('path')
-            .attr('d', arc)
-            .attr('fill', function (d, i) {
-                return color(d.data.title);
-
-            })
-            .transition()
-            .duration(500)
-            .on('mouseover', function (d, i) {
-                d3.select(this).transition()
-                    .duration('50')
-                    .attr('opacity', '.95');
-                div.transition()
-                    .duration(50)
-                    .style("opacity", 1);
-                let num = (d.value).toString() + '%';
-                div.html(num)
-                    .style("left", (d3.event.pageX + 10) + "px")
-                    .style("top", (d3.event.pageY - 15) + "px");
-
-            })
-            .on('mouseout', function (d, i) {
-                d3.select(this).transition()
-                    .duration('50')
-                    .attr('opacity', '1');
-                div.transition()
-                    .duration('50')
-                    .style("opacity", 0);
-            });
-
-        //update all circles to new positions
-
-
-        // d3.select("text").text("dataset" + dataIndex);
-
-    });
+        change(dataset1);
+    })
+d3.select("button#b")
+    .on("click", function () {
+        change(dataset2);
+    })
+d3.select("button#c")
+    .on("click", function () {
+        change(dataset3)
+    })
