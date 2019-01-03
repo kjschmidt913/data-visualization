@@ -183,15 +183,15 @@ function change(data) {
     path.transition().duration(500).attr("d", arc); // redrawing the path with a smooth transition
 }
 
-d3.select("button#a")
+d3.select("button#everyone")
     .on("click", function () {
         change(totals);
     })
-d3.select("button#b")
+d3.select("button#women")
     .on("click", function () {
         change(femaleData);
     })
-d3.select("button#c")
+d3.select("button#men")
     .on("click", function () {
         change(maleData)
     })
