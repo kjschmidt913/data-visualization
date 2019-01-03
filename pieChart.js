@@ -111,9 +111,7 @@ var group5 = [{
     }
 ];
 
-var legendRectSize = 5;
-var legendSpacing = 4;
-var width = 300,
+var width = 600,
     height = 300,
     radius = Math.min(width, height) / 2;
 
@@ -150,13 +148,31 @@ var g = svg.selectAll("arc")
         d3.select(this).transition()
             .duration('50')
             .attr('opacity', '1');
-    });
+    })
+    .attr('transform', 'translate(-100, 0)');
 
 g.append("path")
     .attr("d", arc)
     .style("fill", function (d) {
         return color(d.data.title);
     });
+
+svg.append('g')
+    .attr('class', 'legend')
+    .selectAll('text')
+    .data(group1)
+    .enter()
+    .append('text')
+    .text(function (d) {
+        return '• ' + d.title;
+    })
+    .attr('fill', function (d) {
+        return color(d.title);
+    })
+    .attr('y', function (d, i) {
+        return 19 * (i -2);
+    })
+    .attr('x', 55)
 
 function changeData(data) {
     var pie = d3.pie()
