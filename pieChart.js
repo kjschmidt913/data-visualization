@@ -115,9 +115,8 @@ var width = 600,
     height = 300,
     radius = Math.min(width, height) / 2;
 
-// var color = d3.scaleOrdinal()
-//     .range(["#2C93E8", "#838690", "#F56C4E"]);
-var color = d3.scaleOrdinal(d3.schemeCategory20c);
+var color = d3.scaleOrdinal()
+    .range(["#5EC9A9", "#AFE4B8", "#539CC6", "#323595", "#C2D5EB"]);
 
 var pie = d3.pie()
     .value(function (d) {
@@ -170,7 +169,7 @@ svg.append('g')
         return color(d.title);
     })
     .attr('y', function (d, i) {
-        return 19 * (i -2);
+        return 19 * (i - 2);
     })
     .attr('x', 55)
 
