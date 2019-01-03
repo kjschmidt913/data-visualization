@@ -1,33 +1,134 @@
-var data = [{
-    "letter": "q",
-    "presses": 1
-}, {
-    "letter": "w",
-    "presses": 5
-}, {
-    "letter": "e",
-    "presses": 2
-}];
+//18-24
+var group1 = [{
+        title: "Strongly Like",
+        value: 22
+    },
+    {
+        title: "Somewhat Like",
+        value: 35
+    },
+    {
+        title: "Somewhat Dislike",
+        value: 15
+    },
+    {
+        title: "Strongly Dislike",
+        value: 16
+    },
+    {
+        title: "Other/Not Sure",
+        value: 12
+    }
+];
 
+//25-34
+var group2 = [{
+        title: "Strongly Like",
+        value: 25
+    },
+    {
+        title: "Somewhat Like",
+        value: 39
+    },
+    {
+        title: "Somewhat Dislike",
+        value: 14
+    },
+    {
+        title: "Strongly Dislike",
+        value: 15
+    },
+    {
+        title: "Other/Not Sure",
+        value: 7
+    }
+];
+
+//35-44
+var group3 = [{
+        title: "Strongly Like",
+        value: 30
+    },
+    {
+        title: "Somewhat Like",
+        value: 40
+    },
+    {
+        title: "Somewhat Dislike",
+        value: 12
+    },
+    {
+        title: "Strongly Dislike",
+        value: 12
+    },
+    {
+        title: "Other/Not Sure",
+        value: 6
+    }
+];
+//45-55
+var group4 = [{
+        title: "Strongly Like",
+        value: 39
+    },
+    {
+        title: "Somewhat Like",
+        value: 39
+    },
+    {
+        title: "Somewhat Dislike",
+        value: 9
+    },
+    {
+        title: "Strongly Dislike",
+        value: 9
+    },
+    {
+        title: "Other/Not Sure",
+        value: 4
+    }
+];
+//55+
+var group5 = [{
+        title: "Strongly Like",
+        value: 39
+    },
+    {
+        title: "Somewhat Like",
+        value: 42
+    },
+    {
+        title: "Somewhat Dislike",
+        value: 10
+    },
+    {
+        title: "Strongly Dislike",
+        value: 7
+    },
+    {
+        title: "Other/Not Sure",
+        value: 2
+    }
+];
+
+var legendRectSize = 5;
+var legendSpacing = 4;
 var width = 300,
     height = 300,
     radius = Math.min(width, height) / 2;
 
-var color = d3.scaleOrdinal()
-    .range(["#2C93E8", "#838690", "#F56C4E"]);
+// var color = d3.scaleOrdinal()
+//     .range(["#2C93E8", "#838690", "#F56C4E"]);
+var color = d3.scaleOrdinal(d3.schemeCategory20c);
 
 var pie = d3.pie()
     .value(function (d) {
-        return d.presses;
-    })(data);
+        return d.value;
+    })(group1);
 
 var arc = d3.arc()
     .outerRadius(radius - 10)
     .innerRadius(0);
-
-var labelArc = d3.arc()
-    .outerRadius(radius - 40)
-    .innerRadius(radius - 40);
 
 var svg = d3.select("#pie")
     .append("svg")
@@ -54,14 +155,38 @@ var g = svg.selectAll("arc")
 g.append("path")
     .attr("d", arc)
     .style("fill", function (d) {
-        return color(d.data.letter);
+        return color(d.data.title);
     });
 
-g.append("text")
-    .attr("transform", function (d) {
-        return "translate(" + labelArc.centroid(d) + ")";
+function changeData(data) {
+    var pie = d3.pie()
+        .value(function (d) {
+            return d.value;
+        })(data);
+
+    path = d3.select("#pie")
+        .selectAll("path")
+        .data(pie); // Compute the new angles
+    path.transition().duration(500).attr("d", arc); // redrawing the path with a smooth transition
+}
+
+d3.select("button#group1")
+    .on("click", function () {
+        changeData(group1);
     })
-    .text(function (d) {
-        return d.data.letter;
+d3.select("button#group2")
+    .on("click", function () {
+        changeData(group2);
     })
-    .style("fill", "#fff");
+d3.select("button#group3")
+    .on("click", function () {
+        changeData(group3)
+    })
+d3.select("button#group4")
+    .on("click", function () {
+        changeData(group4)
+    })
+d3.select("button#group5")
+    .on("click", function () {
+        changeData(group5)
+    })
