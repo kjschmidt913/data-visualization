@@ -244,11 +244,6 @@ var initStackedBarChart = {
         default_height = 500;
         default_ratio = default_width / default_height;
 
-        // Current (non-responsive) width and height are calcuated here
-
-        width = default_width - margin.left - margin.right,
-            height = default_height - margin.top - margin.bottom;
-
         // Determine current size, which determines vars
         function set_vars() {
             current_width = window.innerWidth;
