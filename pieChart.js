@@ -111,7 +111,7 @@ var group5 = [{
     }
 ];
 
-var width = 600,
+var width = 300,
     height = 300,
     radius = Math.min(width, height) / 2;
 
@@ -148,7 +148,7 @@ var g = svg.selectAll("arc")
             .duration('50')
             .attr('opacity', '1');
     })
-    .attr('transform', 'translate(-100, 0)');
+    .attr('transform', 'translate(0, 0)');
 
 g.append("path")
     .attr("d", arc)
@@ -156,22 +156,24 @@ g.append("path")
         return color(d.data.title);
     });
 
-svg.append('g')
-    .attr('class', 'legend')
-    .selectAll('text')
-    .data(group1)
-    .enter()
-    .append('text')
-    .text(function (d) {
-        return '• ' + d.title;
-    })
-    .attr('fill', function (d) {
-        return color(d.title);
-    })
-    .attr('y', function (d, i) {
-        return 19 * (i - 2);
-    })
-    .attr('x', 55)
+
+//added this for a legend originally. not located in html
+// svg.append('g')
+//     .attr('class', 'legend')
+//     .selectAll('text')
+//     .data(group1)
+//     .enter()
+//     .append('text')
+//     .text(function (d) {
+//         return '• ' + d.title;
+//     })
+//     .attr('fill', function (d) {
+//         return color(d.title);
+//     })
+//     .attr('y', function (d, i) {
+//         return 19 * (i - 2);
+//     })
+//     .attr('x', 55);
 
 function changeData(data) {
     var pie = d3.pie()

@@ -162,7 +162,6 @@ legend.append('text')
     });
 
 
-
 function change(data) {
     var pie = d3.pie()
         .value(function (d) {
