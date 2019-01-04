@@ -157,7 +157,7 @@ g.append("path")
     });
 
 
-//added this for a legend originally. not located in html
+//added this for a legend originally. now located in html
 // svg.append('g')
 //     .attr('class', 'legend')
 //     .selectAll('text')

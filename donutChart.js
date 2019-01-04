@@ -111,6 +111,7 @@ var path = svg.selectAll('path')
     .attr('fill', function (d, i) {
         return color(d.data.title);
     })
+    .attr('transform', 'translate(0, 0)')
     .on('mouseover', function (d, i) {
         d3.select(this).transition()
             .duration('50')
@@ -160,6 +161,7 @@ legend.append('text')
     .text(function (d) {
         return d;
     });
+
 
 
 function change(data) {
