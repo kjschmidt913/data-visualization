@@ -275,7 +275,7 @@ var initStackedBarChart = {
         xScale = d3.scaleLinear().rangeRound([0, width]),
             yScale = d3.scaleBand().rangeRound([height, 0]).padding(0.1),
             color = d3.scaleOrdinal(d3.schemeCategory20c),
-            xAxis = d3.axisBottom(xScale),
+            xAxis = d3.axisBottom(xScale).ticks(5),
             yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%Y")),
             svg = d3.select("#" + domEle).append("svg")
             .attr("width", 1000 + margin.left + margin.right)
