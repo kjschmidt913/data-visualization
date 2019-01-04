@@ -209,6 +209,25 @@ dataset = {
 var diameter = 900;
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
+//edited the responsive bar code to apply to bubble chart
+default_height = 500;
+default_ratio = diameter / default_height;
+
+// Determine current size, which determines vars
+function set_vars() {
+    current_width = window.innerWidth;
+    current_height = window.innerHeight;
+    current_ratio = current_width / current_height;
+    // Check if height is limiting factor
+    if (current_ratio > default_ratio) {
+        diameter = 900;
+        // Else width is limiting
+    } else {
+        diameter = 400;
+    }
+};
+set_vars();
+
 var bubble = d3.pack(dataset)
     .size([diameter, diameter])
     .padding(.5);
