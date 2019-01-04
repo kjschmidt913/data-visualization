@@ -1,6 +1,6 @@
 var data = [{
     "date": "2016",
-    "total":2319475,
+    "total": 2319475,
     "Alzheimer's disease": 116103,
     "Cancer": 598038,
     "Chronic lower respiratory diseases": 154596,
@@ -48,9 +48,9 @@ var data = [{
     "Unintentional injuries": 130557,
     "Heart disease": 611105,
     "Influenza and pneumonia": 56979,
-    "Kidney disease":47112,
+    "Kidney disease": 47112,
     "Stroke": 128978,
-    "Suicide":41149
+    "Suicide": 41149
 }, {
     "date": "2012",
     "total": 2543279,
@@ -63,7 +63,7 @@ var data = [{
     "Influenza and pneumonia": 50636,
     "Kidney disease": 45622,
     "Stroke": 128546,
-    "Suicide":40600
+    "Suicide": 40600
 }, {
     "date": "2011",
     "total": 2515458,
@@ -71,12 +71,12 @@ var data = [{
     "Cancer": 576691,
     "Chronic lower respiratory diseases": 142943,
     "Diabetes": 73831,
-    "Unintentional injuries":126438,
+    "Unintentional injuries": 126438,
     "Heart disease": 596577,
     "Influenza and pneumonia": 53826,
     "Kidney disease": 45591,
     "Stroke": 128932,
-    "Suicide":39518
+    "Suicide": 39518
 }, {
     "date": "2010",
     "total": 2468435,
@@ -89,7 +89,7 @@ var data = [{
     "Influenza and pneumonia": 50097,
     "Kidney disease": 50476,
     "Stroke": 129476,
-    "Suicide":38364
+    "Suicide": 38364
 }, {
     "date": "2009",
     "total": 2437163,
@@ -102,7 +102,7 @@ var data = [{
     "Influenza and pneumonia": 53692,
     "Kidney disease": 48935,
     "Stroke": 128842,
-    "Suicide":36909
+    "Suicide": 36909
 }, {
     "date": "2008",
     "total": 2471984,
@@ -115,7 +115,7 @@ var data = [{
     "Influenza and pneumonia": 56284,
     "Kidney disease": 48237,
     "Stroke": 134148,
-    "Suicide":36035
+    "Suicide": 36035
 }, {
     "date": "2007",
     "total": 2423712,
@@ -128,7 +128,7 @@ var data = [{
     "Influenza and pneumonia": 52717,
     "Kidney disease": 46448,
     "Stroke": 135952,
-    "Suicide":34598
+    "Suicide": 34598
 }, {
     "date": "2006",
     "total": 2426264,
@@ -141,7 +141,7 @@ var data = [{
     "Influenza and pneumonia": 56326,
     "Kidney disease": 45344,
     "Stroke": 137119,
-    "Suicide":33300
+    "Suicide": 33300
 }, {
     "date": "2005",
     "total": 2448017,
@@ -154,7 +154,7 @@ var data = [{
     "Influenza and pneumonia": 63001,
     "Kidney disease": 43901,
     "Stroke": 143579,
-    "Suicide":32637
+    "Suicide": 32637
 }, {
     "date": "2004",
     "total": 2397615,
@@ -167,7 +167,7 @@ var data = [{
     "Influenza and pneumonia": 59664,
     "Kidney disease": 42480,
     "Stroke": 150074,
-    "Suicide":32439
+    "Suicide": 32439
 }, {
     "date": "2003",
     "total": 2448288,
@@ -180,7 +180,7 @@ var data = [{
     "Influenza and pneumonia": 65163,
     "Kidney disease": 42453,
     "Stroke": 157689,
-    "Suicide":31484
+    "Suicide": 31484
 }, {
     "date": "2002",
     "total": 2443387,
@@ -193,7 +193,7 @@ var data = [{
     "Influenza and pneumonia": 65681,
     "Kidney disease": 40974,
     "Stroke": 162672,
-    "Suicide":31655
+    "Suicide": 31655
 }, {
     "date": "2001",
     "total": 2416425,
@@ -206,7 +206,7 @@ var data = [{
     "Influenza and pneumonia": 62034,
     "Kidney disease": 39480,
     "Stroke": 163538,
-    "Suicide":30622
+    "Suicide": 30622
 }, {
     "date": "2000",
     "total": 2403351,
@@ -219,9 +219,9 @@ var data = [{
     "Influenza and pneumonia": 65313,
     "Kidney disease": 37251,
     "Stroke": 167661,
-    "Suicide":29350
+    "Suicide": 29350
 }];
-var key = ["Alzheimer's disease", "Cancer", "Chronic lower respiratory diseases","Diabetes", "Unintentional injuries", "Heart disease", "Influenza and pneumonia", "Kidney disease", "Stroke", "Suicide"];
+var key = ["Alzheimer's disease", "Cancer", "Chronic lower respiratory diseases", "Diabetes", "Unintentional injuries", "Heart disease", "Influenza and pneumonia", "Kidney disease", "Stroke", "Suicide"];
 var initStackedBarChart = {
     draw: function (config) {
         me = this,
@@ -234,10 +234,45 @@ var initStackedBarChart = {
                 bottom: 30,
                 left: 40
             },
-            parseDate = d3.timeParse("%Y"),
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom,
-            xScale = d3.scaleLinear().rangeRound([0, width]),
+            parseDate = d3.timeParse("%Y");
+
+        var legendRectSize = 17;
+        var legendSpacing = 4;
+
+        //making graph responsive
+        default_width = 960;
+        default_height = 500;
+        default_ratio = default_width / default_height;
+
+        // Current (non-responsive) width and height are calcuated here
+
+        width = default_width - margin.left - margin.right,
+            height = default_height - margin.top - margin.bottom;
+
+        // Determine current size, which determines vars
+        function set_vars() {
+            current_width = window.innerWidth;
+            current_height = window.innerHeight;
+            current_ratio = current_width / current_height;
+            // Check if height is limiting factor
+            if (current_ratio > default_ratio) {
+                h = current_height;
+                w = h * default_ratio;
+                // Else width is limiting
+            } else {
+                w = current_width;
+                h = w / default_ratio;
+                legendRectSize = 13;
+                legendSpacing = 4;
+            }
+            // Set new width and height based on graph dimensions
+            width = w - margin.left - margin.right;
+            height = h - margin.top - margin.bottom;
+        };
+        set_vars();
+        //end responsive graph code
+
+        xScale = d3.scaleLinear().rangeRound([0, width]),
             yScale = d3.scaleBand().rangeRound([height, 0]).padding(0.1),
             color = d3.scaleOrdinal(d3.schemeCategory20c),
             xAxis = d3.axisBottom(xScale),
@@ -247,10 +282,6 @@ var initStackedBarChart = {
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-        var legendRectSize = 17;
-        var legendSpacing = 4;
 
         var stack = d3.stack()
             .keys(stackKey)
@@ -308,7 +339,7 @@ var initStackedBarChart = {
                     .style("opacity", .9);
                 let num = (d[1] - d[0]).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
                 div.html(num)
-                    .style("left", (d3.event.pageX+10) + "px")
+                    .style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY - 15) + "px");
 
             })
@@ -339,8 +370,8 @@ var initStackedBarChart = {
             .attr('transform', function (d, i) {
                 var height = legendRectSize + legendSpacing;
                 var offset = height * color.domain().length / 2;
-                var horz = 43 * legendRectSize;
-                var vert = i * height+7;
+                var horz = width;
+                var vert = i * height + 7;
                 return 'translate(' + horz + ',' + vert + ')';
             });
 
