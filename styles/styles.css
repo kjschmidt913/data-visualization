@@ -52,5 +52,8 @@ div.tooltip-donut {
         width: 5px;
         height: 5px;
     }
+    div.tooltip {	
+        font-size: 1rem;			
+    }
   }
 
