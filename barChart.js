@@ -240,7 +240,7 @@ var initStackedBarChart = {
         var legendSpacing = 4;
 
         //making graph responsive
-        default_width = 960;
+        default_width = 800;
         default_height = 500;
         default_ratio = default_width / default_height;
 
@@ -256,8 +256,8 @@ var initStackedBarChart = {
             current_ratio = current_width / current_height;
             // Check if height is limiting factor
             if (current_ratio > default_ratio) {
-                h = current_height;
-                w = h * default_ratio;
+                h = default_height;
+                w = default_width;
                 // Else width is limiting
             } else {
                 w = current_width;
