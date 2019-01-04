@@ -22,6 +22,27 @@ div.tooltip-donut {
     font-size: 1.3rem;			
 }
 
+.legend-pie{
+
+    font-size: .9rem;
+}
+
+.legend-pie .strongly-like{
+    color:#5EC9A9;
+}
+.legend-pie .like{
+    color:#AFE4B8;
+}
+.legend-pie .dislike{
+    color:#539CC6;
+}
+.legend-pie .strongly-dislike{
+    color:#323595;
+}
+.legend-pie .unsure{
+    color:#C2D5EB;
+}
+
 
 @media only screen and (max-width: 600px) {
     .legend-bar text{
