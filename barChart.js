@@ -262,8 +262,8 @@ var initStackedBarChart = {
             } else {
                 w = current_width;
                 h = w / default_ratio;
-                legendRectSize = 13;
-                legendSpacing = 4;
+                legendSpacing = 2;
+                legendRectSize = 7;
             }
             // Set new width and height based on graph dimensions
             width = w - margin.left - margin.right;
@@ -362,15 +362,15 @@ var initStackedBarChart = {
             .attr("transform", "translate(0,0)")
             .call(yAxis);
 
-        var legend = svg.selectAll('.legend')
+        var legend = svg.selectAll('.legend-bar')
             .data(color.domain())
             .enter()
             .append('g')
-            .attr('class', 'legend')
+            .attr('class', 'legend-bar')
             .attr('transform', function (d, i) {
                 var height = legendRectSize + legendSpacing;
                 var offset = height * color.domain().length / 2;
-                var horz = width;
+                var horz = width - 40;
                 var vert = i * height + 7;
                 return 'translate(' + horz + ',' + vert + ')';
             });

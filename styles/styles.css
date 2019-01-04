@@ -22,3 +22,14 @@ div.tooltip-donut {
     font-size: 1.3rem;			
 }
 
+
+@media only screen and (max-width: 600px) {
+    .legend-bar text{
+        font-size: .5rem;
+    }
+    .legend-bar rect{
+        width: 5px;
+        height: 5px;
+    }
+  }
+

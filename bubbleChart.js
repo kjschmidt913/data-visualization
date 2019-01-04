@@ -206,8 +206,25 @@ dataset = {
     ]
 };
 
-var diameter = 900;
+var default_diameter = 900;
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
+
+
+//making graph responsive
+console.log(window.innerWidth);
+
+// Determine current size, which determines vars
+function set_diameter() {
+
+
+    if (window.innerWidth < 750) {
+        diameter = 100;
+    } else{
+        diameter = default_diameter;
+    }
+
+};
+set_diameter();
 
 var bubble = d3.pack(dataset)
     .size([diameter, diameter])
