@@ -1,6 +1,12 @@
 # Data Visualization
 
-A data visualization project using D3.js. I created this project to learn more about D3.js and to play around with different graphs on my own time. I'll continue adding to it, but right now it contains a horizontal bar graph, a bubble chart, a donut chart (that transitions between different data) and a pie chart (that also transitions between different data). If you're having trouble creating any of these graphs, perhaps looking through this project can help!
+A data visualization project using D3.js. I created this project to learn more about D3.js, and to play around with different graphs on my own time. I'll continue adding to it, but right now it contains a horizontal bar graph, a bubble chart, a donut chart, and a pie chart, with responsive code included for mobile. If you're having trouble creating any of these graphs, perhaps looking through this project can help!
+ 
+## Graphs Included
+* Horizontal Bar Chart
+* Bubble Chart
+* Donut Chart (that can transition between different data sets)
+* Pie Chart (that can transition between different data sets)
 
 ## Getting Started
 
@@ -15,5 +21,5 @@ See a live preview [here](https://kjschmidt913.github.io/data-visualization/).
 
 ## Built With
 
-* D3.js version 4.6.0
-* Bootstrap 4.1.3
+* [D3.js](https://d3js.org/) version 4.6.0
+* [Bootstrap](https://v4-alpha.getbootstrap.com/) 4.1.3
