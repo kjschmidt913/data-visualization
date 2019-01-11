@@ -26,7 +26,7 @@ var y = d3.scale.linear()
     })])
     .range([height, 0]);
 
-var chart = d3.select('#scatter')
+var chart = d3.select('body')
     .append('svg:svg')
     .attr('width', width + margin.right + margin.left)
     .attr('height', height + margin.top + margin.bottom)
