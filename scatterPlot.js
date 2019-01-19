@@ -50,3 +50,4 @@ svg.selectAll("text")
     })
     .attr("font-size", "15px")
     .attr("fill", "black");
+    
