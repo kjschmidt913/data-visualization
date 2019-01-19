@@ -15,7 +15,7 @@ var dataset = [
 ];
 
 //Create SVG element
-var svg = d3.select("body")
+var svg = d3.select("#scatter")
     .append("svg")
     .attr("width", w)
     .attr("height", h);
@@ -50,4 +50,3 @@ svg.selectAll("text")
     })
     .attr("font-size", "15px")
     .attr("fill", "black");
-    
