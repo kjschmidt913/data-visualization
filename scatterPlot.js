@@ -69,5 +69,4 @@ svg.append("g")
     .attr("transform", "translate(0,0)")
     .call(yAxis);
 
-
 //end code for axis
