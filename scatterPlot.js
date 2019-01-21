@@ -59,6 +59,13 @@ xScale = d3.scaleLinear().rangeRound([0, w]),
     xAxis = d3.axisBottom(xScale),
     yAxis = d3.axisLeft(yScale);
 
+    // yScale.domain(data.map(function (d) {
+    //     return parseDate(d[0]);
+    // }));
+    
+    //x max
+    xScale.domain([0, d3.max(400)]).nice();
+
 svg.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", "translate(0," + (h - 5) + ")")
@@ -68,5 +75,6 @@ svg.append("g")
     .attr("class", "axis axis--y")
     .attr("transform", "translate(0,0)")
     .call(yAxis);
+
 
 //end code for axis
