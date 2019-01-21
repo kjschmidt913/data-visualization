@@ -35,25 +35,6 @@ svg.selectAll("circle")
     })
     .attr("fill", "#00aa88");
 
-    //non functional code for axis
-    margin = {
-        top: 20,
-        right: 40,
-        bottom: 30,
-        left: 40
-    },
-
-    xScale = d3.scaleLinear().rangeRound([0, w]),
-    yScale = d3.scaleBand().rangeRound([h, 0]).padding(0.1),
-    xAxis = d3.axisBottom(xScale),
-    yAxis = d3.axisLeft(yScale),
-    svg = d3.select("#" + domEle).append("svg")
-    .attr("width", 1000 + margin.left + margin.right)
-    .attr("height", h + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    //end code for axis
 
 svg.selectAll("text")
     .data(dataset)
@@ -70,3 +51,23 @@ svg.selectAll("text")
     })
     .attr("font-size", "15px")
     .attr("fill", "black");
+
+//code for axis
+
+xScale = d3.scaleLinear().rangeRound([0, w]),
+    yScale = d3.scaleBand().rangeRound([h, 0]).padding(0.1),
+    xAxis = d3.axisBottom(xScale),
+    yAxis = d3.axisLeft(yScale);
+
+svg.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + (h - 5) + ")")
+    .call(xAxis);
+
+svg.append("g")
+    .attr("class", "axis axis--y")
+    .attr("transform", "translate(0,0)")
+    .call(yAxis);
+
+
+//end code for axis
