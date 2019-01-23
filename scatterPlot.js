@@ -53,7 +53,11 @@ svg.selectAll("text")
     .attr("fill", "black");
 
 //code for axis
+data.sort(function (a, b) {
+    return a[0] - b[0];
+});
 parseDate = d3.timeParse("%Y");
+
 
 xScale = d3.scaleLinear().rangeRound([0, w]),
     yScale = d3.scaleBand().rangeRound([h, 0]).padding(0.1),
