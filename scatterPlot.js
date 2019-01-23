@@ -2,16 +2,16 @@ var w = 600;
 var h = 300;
 
 var dataset = [
-    [256, 20],
-    [480, 270],
-    [250, 150],
-    [100, 99],
-    [330, 285],
-    [410, 36],
-    [475, 132],
-    [25, 180],
-    [85, 63],
-    [220, 240]
+    [1999, 20],
+    [2000, 270],
+    [2001, 150],
+    [2002, 99],
+    [2003, 285],
+    [1999, 36],
+    [2001, 132],
+    [2002, 180],
+    [1999, 63],
+    [2000, 240]
 ];
 
 
@@ -53,18 +53,20 @@ svg.selectAll("text")
     .attr("fill", "black");
 
 //code for axis
+parseDate = d3.timeParse("%Y");
 
 xScale = d3.scaleLinear().rangeRound([0, w]),
     yScale = d3.scaleBand().rangeRound([h, 0]).padding(0.1),
-    xAxis = d3.axisBottom(xScale),
+    xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y"))
     yAxis = d3.axisLeft(yScale);
 
-    // yScale.domain(data.map(function (d) {
-    //     return parseDate(d[0]);
-    // }));
+    xScale.domain(data.map(function (d) {
+        return parseDate(d[0]);
+    }));
+    
     
     //x max
-    xScale.domain([0, d3.max(400)]).nice();
+    // xScale.domain([0, d3.max(data[0])]).nice();
 
 svg.append("g")
     .attr("class", "axis axis--x")
