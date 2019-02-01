@@ -71,6 +71,7 @@ var maleData = [{
 var width = 360;
 var height = 360;
 var radius = Math.min(width, height) / 2;
+var donutWidth = 75;
 
 // var color = d3.scaleOrdinal(d3.schemeCategory20c);
 var color = d3.scaleOrdinal()
@@ -83,8 +84,6 @@ var svg = d3.select('#donut')
     .append('g')
     .attr('transform', 'translate(' + (width / 2) +
         ',' + (height / 2) + ')');
-
-var donutWidth = 75;
 
 var arc = d3.arc()
     .innerRadius(radius - donutWidth)
