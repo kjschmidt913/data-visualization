@@ -14,7 +14,7 @@ Each graph has it's own .js file named with what type of graph it is. The data f
 
 Example: pieChart.js includes code for the pie chart and the data it uses. In the html, it appears in a div with the ID #pie.
 
-I've written a [tutorial](https://medium.com/@kj_schmidt/making-an-animated-donut-chart-with-d3-js-17751fde4679) for the donut chart that goes into more detail for implementing it.
+I've written a [tutorial](https://medium.com/@kj_schmidt/making-an-animated-donut-chart-with-d3-js-17751fde4679) that goes into more detail for implementing the donut chart, and another [tutorial](https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2) for adding the mouse-over effects.
 
 ## Preview Live
 
