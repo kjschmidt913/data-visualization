@@ -54,12 +54,11 @@ svg.selectAll("text")
 
 //code for axis
 data.sort(function (a, b) {
-    return a[0] - b[0];
+    return b[0] - a[0];
 });
 parseDate = d3.timeParse("%Y");
 
-
-xScale = d3.scaleLinear().rangeRound([0, w]),
+xScale = d3.scaleLinear().rangeRound([0, 2002]),
     yScale = d3.scaleBand().rangeRound([h, 0]).padding(0.1),
     xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y"))
     yAxis = d3.axisLeft(yScale);
