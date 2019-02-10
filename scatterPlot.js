@@ -1,85 +1,101 @@
-var w = 600;
-var h = 300;
+var margin = {
+        top: 20,
+        right: 20,
+        bottom: 30,
+        left: 50
+    },
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
-var dataset = [
-    [1999, 20],
-    [2000, 270],
-    [2001, 150],
-    [2002, 99],
-    [2003, 285],
-    [1999, 36],
-    [2001, 132],
-    [2002, 180],
-    [1999, 63],
-    [2000, 240]
-];
+// parse the date / time
+var parseTime = d3.timeParse("%d-%b-%y");
+
+// set the ranges
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+
+// define the line
+var valueline = d3.line()
+    .x(function (d) {
+        return x(d.date);
+    })
+    .y(function (d) {
+        return y(d.close);
+    });
+
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+var svg = d3.select("#scatter").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+// Get the data
+data = [{
+    date: 1999,
+    close: 32
+}, {
+    date: 1995,
+    close: 15
+}, {
+    date: 1998,
+    close: 3
+}, {
+    date: 1992,
+    close: 22
+}, {
+    date: 1999,
+    close: 50
+}, {
+    date: 2000,
+    close: 43
+}]
+
+// format the data
+data.forEach(function (d) {
+
+    parseDate = d3.timeParse("%Y");
 
 
-var svg = d3.select("#scatter")
-    .append("svg")
-    .attr("width", w)
-    .attr("height", h);
+    d.date = parseDate(d.date);
+    // d3.timeParse("%Y");
+    d.close = +d.close;
+});
 
-svg.selectAll("circle")
-    .data(dataset)
-    .enter()
-    .append("circle")
+// Scale the range of the data
+x.domain(d3.extent(data, function (d) {
+    return d.date;
+}));
+y.domain([0, d3.max(data, function (d) {
+    return d.close;
+})]);
+
+// Add the valueline path.
+svg.append("path")
+    .data([data])
+    .attr("class", "line")
+    .attr("d", valueline);
+
+// Add the scatterplot
+svg.selectAll("dot")
+    .data(data)
+    .enter().append("circle")
+    .attr("r", 5)
     .attr("cx", function (d) {
-        return d[0];
+        return x(d.date);
     })
     .attr("cy", function (d) {
-        return d[1];
-    })
-    .attr("r", function (d) {
-        return Math.sqrt(h - d[1]);
-    })
-    .attr("fill", "#00aa88");
+        return y(d.close);
+    });
 
-
-svg.selectAll("text")
-    .data(dataset)
-    .enter()
-    .append("text")
-    .text(function (d) {
-        return d[0] + "," + d[1];
-    })
-    .attr("x", function (d) {
-        return d[0];
-    })
-    .attr("y", function (d) {
-        return d[1];
-    })
-    .attr("font-size", "15px")
-    .attr("fill", "black");
-
-//code for axis
-data.sort(function (a, b) {
-    return b[0] - a[0];
-});
-parseDate = d3.timeParse("%Y");
-
-xScale = d3.scaleLinear().rangeRound([0, 2002]),
-    yScale = d3.scaleBand().rangeRound([h, 0]).padding(0.1),
-    xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y"))
-    yAxis = d3.axisLeft(yScale);
-
-    xScale.domain(data.map(function (d) {
-        return parseDate(d[0]);
-    }));
-    
-    
-    //x max
-    // xScale.domain([0, d3.max(data[0])]).nice();
-
+// Add the X Axis
 svg.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + (h - 5) + ")")
-    .call(xAxis);
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
 
+// Add the Y Axis
 svg.append("g")
-    .attr("class", "axis axis--y")
-    .attr("transform", "translate(0,0)")
-    .call(yAxis);
-
-
-//end code for axis
+    .call(d3.axisLeft(y));
