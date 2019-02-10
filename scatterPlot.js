@@ -4,7 +4,7 @@ var margin = {
         bottom: 30,
         left: 50
     },
-    width = 960 - margin.left - margin.right,
+    width = 700 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 // set the ranges
