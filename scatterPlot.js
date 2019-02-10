@@ -41,14 +41,6 @@ var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-
-function formatDollar(num) {
-    var p = num.toFixed(2).split(".");
-    return ["$", p[0].split("").reverse().reduce(function (acc, num, i) {
-        return num + (i && !(i % 3) ? "," : "") + acc;
-    }, "."), p[1]].join("");
-}
-
 //making graph responsive
 default_width = 700 - margin.left - margin.right;
 default_height = 500 - margin.top - margin.bottom;
@@ -143,7 +135,9 @@ svg.selectAll("dot")
         div.transition()
             .duration(200)
             .style("opacity", .9);
-        div.html(formatDollar(d.close))
+
+            
+        div.html("$" + d3.format(".2f")(d.close))
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
     })
