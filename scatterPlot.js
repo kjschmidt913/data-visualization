@@ -1,21 +1,33 @@
 data = [{
-    date: 1999,
-    close: 32
+    date: 2009,
+    close: 7.25
 }, {
-    date: 1995,
-    close: 15
+    date: 2008,
+    close: 6.55
 }, {
-    date: 1998,
-    close: 3
+    date: 2007,
+    close: 5.85
 }, {
-    date: 1992,
-    close: 22
+    date: 1997,
+    close: 5.15
 }, {
-    date: 1999,
-    close: 50
+    date: 1996,
+    close: 4.75
 }, {
-    date: 2000,
-    close: 43
+    date: 1991,
+    close: 4.25
+}, {
+    date: 1981,
+    close: 3.35
+}, {
+    date: 1980,
+    close: 3.10
+}, {
+    date: 1979,
+    close: 2.90
+}, {
+    date: 1978,
+    close: 2.65
 }]
 
 var margin = {
@@ -39,11 +51,11 @@ function set_vars() {
     current_width = window.innerWidth;
     current_height = window.innerHeight;
     current_ratio = current_width / current_height;
-    // Check if height is limiting factor
+    // Check if height is limiting factor/ desktop
     if (current_ratio > default_ratio) {
         h = default_height;
         w = default_width;
-        // Else width is limiting
+        // Else width is limiting / mobile
     } else {
         margin.left = 20
         w = current_width;
@@ -137,8 +149,15 @@ svg.selectAll("dot")
     });
 
 // Add the axis
-svg.append("g")
+if (width<500){
+    svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).ticks(5));
+} else{
+    svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
+}
+
 svg.append("g")
     .call(d3.axisLeft(y));
