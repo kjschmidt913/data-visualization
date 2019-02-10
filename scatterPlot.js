@@ -7,9 +7,6 @@ var margin = {
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-// parse the date / time
-var parseTime = d3.timeParse("%d-%b-%y");
-
 // set the ranges
 var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
@@ -58,10 +55,7 @@ data = [{
 data.forEach(function (d) {
 
     parseDate = d3.timeParse("%Y");
-
-
     d.date = parseDate(d.date);
-    // d3.timeParse("%Y");
     d.close = +d.close;
 });
 
@@ -74,10 +68,10 @@ y.domain([0, d3.max(data, function (d) {
 })]);
 
 // Add the valueline path.
-svg.append("path")
-    .data([data])
-    .attr("class", "line")
-    .attr("d", valueline);
+// svg.append("path")
+//     .data([data])
+//     .attr("class", "line")
+    // .attr("d", valueline);
 
 // Add the scatterplot
 svg.selectAll("dot")
