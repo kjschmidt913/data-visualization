@@ -50,7 +50,7 @@ function set_vars() {
         h = w / default_ratio;
     }
     // Set new width and height based on graph dimensions
-    width = w - margin.left - margin.right;
+    width = w - 50 - margin.right;
     height = h - margin.top - margin.bottom;
 };
 set_vars();
