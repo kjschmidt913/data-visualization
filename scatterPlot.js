@@ -4,8 +4,36 @@ var margin = {
         bottom: 30,
         left: 50
     },
-    width = 700 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+
+//making graph responsive
+default_width = 700 - margin.left - margin.right,
+default_height = 500 - margin.top - margin.bottom;
+default_ratio = default_width / default_height;
+
+// Determine current size, which determines vars
+function set_vars() {
+    current_width = window.innerWidth;
+    current_height = window.innerHeight;
+    current_ratio = current_width / current_height;
+    // Check if height is limiting factor
+    if (current_ratio > default_ratio) {
+        h = default_height;
+        w = default_width;
+        // Else width is limiting
+    } else {
+        margin.left = 20
+        w = current_width;
+        h = w / default_ratio;
+        
+    }
+    // Set new width and height based on graph dimensions
+    width = w - margin.left - margin.right;
+    height = h - margin.top - margin.bottom;
+};
+set_vars();
+//end responsive graph code
+
+
 
 // set the ranges
 var x = d3.scaleTime().range([0, width]);
@@ -29,6 +57,8 @@ var svg = d3.select("#scatter").append("svg")
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
+
+
 
 // Get the data
 data = [{
