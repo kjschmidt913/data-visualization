@@ -41,9 +41,17 @@ var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+
+function formatDollar(num) {
+    var p = num.toFixed(2).split(".");
+    return ["$", p[0].split("").reverse().reduce(function (acc, num, i) {
+        return num + (i && !(i % 3) ? "," : "") + acc;
+    }, "."), p[1]].join("");
+}
+
 //making graph responsive
-default_width = 700 - margin.left - margin.right,
-    default_height = 500 - margin.top - margin.bottom;
+default_width = 700 - margin.left - margin.right;
+default_height = 500 - margin.top - margin.bottom;
 default_ratio = default_width / default_height;
 
 // Determine current size, which determines vars
@@ -135,7 +143,7 @@ svg.selectAll("dot")
         div.transition()
             .duration(200)
             .style("opacity", .9);
-        div.html(d.close)
+        div.html(formatDollar(d.close))
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
     })
@@ -149,14 +157,14 @@ svg.selectAll("dot")
     });
 
 // Add the axis
-if (width<500){
+if (width < 500) {
     svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(5));
-} else{
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).ticks(5));
+} else {
     svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
 }
 
 svg.append("g")
