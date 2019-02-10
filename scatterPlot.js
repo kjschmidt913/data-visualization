@@ -84,6 +84,9 @@ data.forEach(function (d) {
     d.date = parseDate(d.date);
     d.close = +d.close;
 });
+data.sort(function (a, b) {
+    return a.date - b.date;
+});
 
 // Scale the range of the data
 x.domain(d3.extent(data, function (d) {
@@ -94,10 +97,10 @@ y.domain([0, d3.max(data, function (d) {
 })]);
 
 // Add the valueline path.
-// svg.append("path")
-//     .data([data])
-//     .attr("class", "line")
-    // .attr("d", valueline);
+svg.append("path")
+    .data([data])
+    .attr("class", "line")
+    .attr("d", valueline);
 
 // Add the scatterplot
 svg.selectAll("dot")
