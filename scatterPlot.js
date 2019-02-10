@@ -19,15 +19,19 @@ data = [{
 }]
 
 var margin = {
-        top: 20,
-        right: 20,
-        bottom: 30,
-        left: 50
-    },
+    top: 20,
+    right: 20,
+    bottom: 30,
+    left: 50
+}
+
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
 //making graph responsive
 default_width = 700 - margin.left - margin.right,
-default_height = 500 - margin.top - margin.bottom;
+    default_height = 500 - margin.top - margin.bottom;
 default_ratio = default_width / default_height;
 
 // Determine current size, which determines vars
@@ -116,6 +120,20 @@ svg.selectAll("dot")
         d3.select(this).transition()
             .duration('200')
             .attr('opacity', '.7');
+        div.transition()
+            .duration(200)
+            .style("opacity", .9);
+        div.html(d.close)
+            .style("left", (d3.event.pageX + 10) + "px")
+            .style("top", (d3.event.pageY - 15) + "px");
+    })
+    .on('mouseout', function (d, i) {
+        d3.select(this).transition()
+            .duration('200')
+            .attr('opacity', '1');
+        div.transition()
+            .duration('200')
+            .style("opacity", 0);
     });
 
 // Add the axis
