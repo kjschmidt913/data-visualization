@@ -1,3 +1,24 @@
+data = [{
+    date: 1999,
+    close: 32
+}, {
+    date: 1995,
+    close: 15
+}, {
+    date: 1998,
+    close: 3
+}, {
+    date: 1992,
+    close: 22
+}, {
+    date: 1999,
+    close: 50
+}, {
+    date: 2000,
+    close: 43
+}]
+
+
 var margin = {
         top: 20,
         right: 20,
@@ -24,7 +45,6 @@ function set_vars() {
         margin.left = 20
         w = current_width;
         h = w / default_ratio;
-        
     }
     // Set new width and height based on graph dimensions
     width = w - margin.left - margin.right;
@@ -32,7 +52,6 @@ function set_vars() {
 };
 set_vars();
 //end responsive graph code
-
 
 
 // set the ranges
@@ -57,29 +76,6 @@ var svg = d3.select("#scatter").append("svg")
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
-
-
-
-// Get the data
-data = [{
-    date: 1999,
-    close: 32
-}, {
-    date: 1995,
-    close: 15
-}, {
-    date: 1998,
-    close: 3
-}, {
-    date: 1992,
-    close: 22
-}, {
-    date: 1999,
-    close: 50
-}, {
-    date: 2000,
-    close: 43
-}]
 
 // format the data
 data.forEach(function (d) {
