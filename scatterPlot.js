@@ -18,7 +18,6 @@ data = [{
     close: 43
 }]
 
-
 var margin = {
         top: 20,
         right: 20,
@@ -67,7 +66,7 @@ var valueline = d3.line()
         return y(d.close);
     });
 
-// append the svg obgect to the body of the page
+// append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
 var svg = d3.select("#scatter").append("svg")
@@ -79,11 +78,11 @@ var svg = d3.select("#scatter").append("svg")
 
 // format the data
 data.forEach(function (d) {
-
     parseDate = d3.timeParse("%Y");
     d.date = parseDate(d.date);
     d.close = +d.close;
 });
+//sort the data by date so the trend line makes sense
 data.sort(function (a, b) {
     return a.date - b.date;
 });
@@ -96,13 +95,13 @@ y.domain([0, d3.max(data, function (d) {
     return d.close;
 })]);
 
-// Add the valueline path.
+// Add the trendline
 svg.append("path")
     .data([data])
     .attr("class", "line")
     .attr("d", valueline);
 
-// Add the scatterplot
+// Add the data points
 svg.selectAll("dot")
     .data(data)
     .enter().append("circle")
@@ -112,13 +111,16 @@ svg.selectAll("dot")
     })
     .attr("cy", function (d) {
         return y(d.close);
+    })
+    .on('mouseover', function (d, i) {
+        d3.select(this).transition()
+            .duration('200')
+            .attr('opacity', '.7');
     });
 
-// Add the X Axis
+// Add the axis
 svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
-
-// Add the Y Axis
 svg.append("g")
     .call(d3.axisLeft(y));
