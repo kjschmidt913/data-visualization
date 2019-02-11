@@ -1,33 +1,33 @@
 data = [{
     date: 2009,
-    close: 7.25
+    wage: 7.25
 }, {
     date: 2008,
-    close: 6.55
+    wage: 6.55
 }, {
     date: 2007,
-    close: 5.85
+    wage: 5.85
 }, {
     date: 1997,
-    close: 5.15
+    wage: 5.15
 }, {
     date: 1996,
-    close: 4.75
+    wage: 4.75
 }, {
     date: 1991,
-    close: 4.25
+    wage: 4.25
 }, {
     date: 1981,
-    close: 3.35
+    wage: 3.35
 }, {
     date: 1980,
-    close: 3.10
+    wage: 3.10
 }, {
     date: 1979,
-    close: 2.90
+    wage: 2.90
 }, {
     date: 1978,
-    close: 2.65
+    wage: 2.65
 }]
 
 var margin = {
@@ -79,7 +79,7 @@ var valueline = d3.line()
         return x(d.date);
     })
     .y(function (d) {
-        return y(d.close);
+        return y(d.wage);
     });
 
 // append the svg object to the body of the page
@@ -96,7 +96,7 @@ var svg = d3.select("#scatter").append("svg")
 data.forEach(function (d) {
     parseDate = d3.timeParse("%Y");
     d.date = parseDate(d.date);
-    d.close = +d.close;
+    d.wage = +d.wage;
 });
 //sort the data by date so the trend line makes sense
 data.sort(function (a, b) {
@@ -108,7 +108,7 @@ x.domain(d3.extent(data, function (d) {
     return d.date;
 }));
 y.domain([0, d3.max(data, function (d) {
-    return d.close;
+    return d.wage;
 })]);
 
 // Add the trendline
@@ -126,25 +126,26 @@ svg.selectAll("dot")
         return x(d.date);
     })
     .attr("cy", function (d) {
-        return y(d.close);
+        return y(d.wage);
     })
+    .attr("stroke", "#32CD32")
+    .attr("stroke-width", 1.5)
+    .attr("fill", "#FFFFFF")
     .on('mouseover', function (d, i) {
         d3.select(this).transition()
-            .duration('200')
-            .attr('opacity', '.7');
+            .duration('100')
+            .attr("r", 7);
         div.transition()
-            .duration(200)
-            .style("opacity", .9);
-
-            
-        div.html("$" + d3.format(".2f")(d.close))
+            .duration(100)
+            .style("opacity", 1);
+        div.html("$" + d3.format(".2f")(d.wage))
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
     })
     .on('mouseout', function (d, i) {
         d3.select(this).transition()
             .duration('200')
-            .attr('opacity', '1');
+            .attr("r", 5);
         div.transition()
             .duration('200')
             .style("opacity", 0);
@@ -162,4 +163,6 @@ if (width < 500) {
 }
 
 svg.append("g")
-    .call(d3.axisLeft(y).tickFormat(function(d) { return "$" + d3.format(".2f")(d) }));
+    .call(d3.axisLeft(y).tickFormat(function (d) {
+        return "$" + d3.format(".2f")(d)
+    }));
