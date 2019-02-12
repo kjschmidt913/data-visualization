@@ -1,12 +1,13 @@
 # Data Visualization
 
-A data visualization project using D3.js. I created this project to learn more about D3.js, and to play around with different graphs on my own time. I'll continue adding to it, but right now it contains a horizontal bar graph, a bubble chart, a donut chart, and a pie chart, with responsive code included for mobile. If you're having trouble creating any of these graphs, perhaps looking through this project can help! Data is from the Centers for Disease Control and Prevention, United States Census Bureau, and YouGov, which are all linked to in the project.
+A data visualization project using D3.js. I created this project to learn more about D3.js, and to play around with different graphs on my own time. I'll continue adding to it, but right now it contains a horizontal bar graph, a bubble chart, a donut chart, a pie chart, and a scatter plot, with responsive code included for mobile. If you're having trouble creating any of these graphs, perhaps looking through this project can help! Data is from the Centers for Disease Control and Prevention, United States Census Bureau, and YouGov, which are all linked to in the project.
  
 ## Graphs Included
 * Horizontal Bar Chart
 * Bubble Chart
 * Donut Chart (that can transition between different data sets)
 * Pie Chart (that can transition between different data sets)
+* Scatter Plot
 
 ## Getting Started
 
