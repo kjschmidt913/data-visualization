@@ -43,12 +43,6 @@ div.tooltip-donut {
     color:#C2D5EB;
 }
 
-.line {
-    fill: none;
-    stroke: #32CD32;
-    stroke-width: 2px;
-  }
-
 
 @media only screen and (max-width: 600px) {
     .legend-bar text{

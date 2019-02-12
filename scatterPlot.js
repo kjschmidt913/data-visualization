@@ -69,9 +69,28 @@ set_vars();
 //end responsive graph code
 
 
+// format the data
+data.forEach(function (d) {
+    parseDate = d3.timeParse("%Y");
+    d.date = parseDate(d.date);
+    d.wage = +d.wage;
+});
+//sort the data by date so the trend line makes sense
+data.sort(function (a, b) {
+    return a.date - b.date;
+});
+
 // set the ranges
 var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
+
+// Scale the range of the data
+x.domain(d3.extent(data, function (d) {
+    return d.date;
+}));
+y.domain([0, d3.max(data, function (d) {
+    return d.wage;
+})]);
 
 // define the line
 var valueline = d3.line()
@@ -90,30 +109,14 @@ var svg = d3.select("#scatter").append("svg")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-// format the data
-data.forEach(function (d) {
-    parseDate = d3.timeParse("%Y");
-    d.date = parseDate(d.date);
-    d.wage = +d.wage;
-});
-//sort the data by date so the trend line makes sense
-data.sort(function (a, b) {
-    return a.date - b.date;
-});
-
-// Scale the range of the data
-x.domain(d3.extent(data, function (d) {
-    return d.date;
-}));
-y.domain([0, d3.max(data, function (d) {
-    return d.wage;
-})]);
-
 // Add the trendline
 svg.append("path")
     .data([data])
     .attr("class", "line")
-    .attr("d", valueline);
+    .attr("d", valueline)
+    .attr("stroke", "#32CD32")
+    .attr("stroke-width", 2)
+    .attr("fill", "#FFFFFF");
 
 // Add the data points
 svg.selectAll("dot")
