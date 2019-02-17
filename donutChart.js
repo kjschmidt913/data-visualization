@@ -20,7 +20,6 @@ var totals = [{
     }
 ];
 
-
 //female
 var femaleData = [{
         title: "Soft-serve",
@@ -45,7 +44,6 @@ var femaleData = [{
 ];
 
 //male
-
 var maleData = [{
         title: "Soft-serve",
         value: 27,
@@ -72,8 +70,6 @@ var width = 360;
 var height = 360;
 var radius = Math.min(width, height) / 2;
 var donutWidth = 75;
-
-// var color = d3.scaleOrdinal(d3.schemeCategory20c);
 var color = d3.scaleOrdinal()
     .range(["#5A39AC", "#DD98D6", "#E7C820", "#08B2B2"]);
 
@@ -99,7 +95,7 @@ var legendRectSize = 13;
 var legendSpacing = 7;
 
 var div = d3.select("body").append("div")
-    .attr("class", "tooltip-donut")
+    .attr("class", "donut-tip")
     .style("opacity", 0);
 
 var path = svg.selectAll('path')
@@ -160,8 +156,6 @@ legend.append('text')
     .text(function (d) {
         return d;
     });
-
-
 
 function change(data) {
     var pie = d3.pie()
