@@ -94,7 +94,7 @@ var pie = d3.pie()
 var legendRectSize = 13;
 var legendSpacing = 7;
 
-var div = d3.select("body").append("div")
+var donutTip = d3.select("body").append("div")
     .attr("class", "donut-tip")
     .style("opacity", 0);
 
@@ -111,11 +111,11 @@ var path = svg.selectAll('path')
         d3.select(this).transition()
             .duration('50')
             .attr('opacity', '.85');
-        div.transition()
+        donutTip.transition()
             .duration(50)
             .style("opacity", 1);
         let num = (Math.round((d.value / d.data.all) * 100)).toString() + '%';
-        div.html(num)
+        donutTip.html(num)
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
 
@@ -124,7 +124,7 @@ var path = svg.selectAll('path')
         d3.select(this).transition()
             .duration('50')
             .attr('opacity', '1');
-        div.transition()
+        donutTip.transition()
             .duration('50')
             .style("opacity", 0);
     });
