@@ -20,7 +20,6 @@ var totals = [{
     }
 ];
 
-
 //female
 var femaleData = [{
         title: "Soft-serve",
@@ -45,7 +44,6 @@ var femaleData = [{
 ];
 
 //male
-
 var maleData = [{
         title: "Soft-serve",
         value: 27,
@@ -72,8 +70,6 @@ var width = 360;
 var height = 360;
 var radius = Math.min(width, height) / 2;
 var donutWidth = 75;
-
-// var color = d3.scaleOrdinal(d3.schemeCategory20c);
 var color = d3.scaleOrdinal()
     .range(["#5A39AC", "#DD98D6", "#E7C820", "#08B2B2"]);
 
@@ -98,8 +94,8 @@ var pie = d3.pie()
 var legendRectSize = 13;
 var legendSpacing = 7;
 
-var div = d3.select("body").append("div")
-    .attr("class", "tooltip-donut")
+var donutTip = d3.select("body").append("div")
+    .attr("class", "donut-tip")
     .style("opacity", 0);
 
 var path = svg.selectAll('path')
@@ -115,11 +111,11 @@ var path = svg.selectAll('path')
         d3.select(this).transition()
             .duration('50')
             .attr('opacity', '.85');
-        div.transition()
+        donutTip.transition()
             .duration(50)
             .style("opacity", 1);
         let num = (Math.round((d.value / d.data.all) * 100)).toString() + '%';
-        div.html(num)
+        donutTip.html(num)
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 15) + "px");
 
@@ -128,7 +124,7 @@ var path = svg.selectAll('path')
         d3.select(this).transition()
             .duration('50')
             .attr('opacity', '1');
-        div.transition()
+        donutTip.transition()
             .duration('50')
             .style("opacity", 0);
     });
@@ -160,8 +156,6 @@ legend.append('text')
     .text(function (d) {
         return d;
     });
-
-
 
 function change(data) {
     var pie = d3.pie()

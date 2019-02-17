@@ -51,14 +51,14 @@ function set_vars() {
     current_width = window.innerWidth;
     current_height = window.innerHeight;
     current_ratio = current_width / current_height;
-    // Check if height is limiting factor/ desktop
+    // desktop
     if (current_ratio > default_ratio) {
         h = default_height;
         w = default_width;
-        // Else width is limiting / mobile
+        // mobile
     } else {
-        margin.left = 20
-        w = current_width;
+        margin.left = 40
+        w = current_width - 40;
         h = w / default_ratio;
     }
     // Set new width and height based on graph dimensions

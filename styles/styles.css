@@ -10,7 +10,7 @@ div.tooltip {
     font-size: .7rem;			
 }
 
-div.tooltip-donut {	
+div.donut-tip {	
     position: absolute;			
     text-align: center;								
     padding: .5rem;				
