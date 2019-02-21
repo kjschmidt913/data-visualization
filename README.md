@@ -17,6 +17,8 @@ Example: pieChart.js includes code for the pie chart and the data it uses. In th
 
 ### Tutorials
 
+I've written a few tutorials to help you implement these on your own.
+
 * [Creating a donut chart that switches between datasets](https://medium.com/@kj_schmidt/making-an-animated-donut-chart-with-d3-js-17751fde4679) 
 * [Show data on Mouse-Over](https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2) (Donut chart)
 * [Creating a Simple Scatter Plot](https://link.medium.com/dkxT5urwtU) 
