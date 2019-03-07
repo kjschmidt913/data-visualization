@@ -12,3 +12,12 @@ var projection = d3
 var path = d3
     .geoPath()
     .projection(projection);
+
+function zoomed() {
+    t = d3
+        .event
+        .transform;
+    countriesGroup.attr(
+        "transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")"
+    );
+}
