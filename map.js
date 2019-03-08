@@ -45,3 +45,14 @@ d3.json(
 
     }
 );
+
+countriesGroup = svg
+    .append("g")
+    .attr("id", "map");
+
+countriesGroup
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", w)
+    .attr("height", h);
