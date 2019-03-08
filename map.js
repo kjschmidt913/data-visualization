@@ -32,9 +32,16 @@ function getTextBox(selection) {
 }
 
 var svg = d3
-  .select("#map")
-  .append("svg")
-  .attr("width", $("#map").width())
-  .attr("height", $("#map").height())
-  .call(zoom)
-;
+    .select("#map")
+    .append("svg")
+    .attr("width", $("#map").width())
+    .attr("height", $("#map").height())
+    .call(zoom);
+
+// get map data
+d3.json(
+    "https://raw.githubusercontent.com/andybarefoot/andybarefoot-www/master/maps/mapdata/custom50.json",
+    function (json) {
+
+    }
+);
