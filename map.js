@@ -56,3 +56,27 @@ countriesGroup
     .attr("y", 0)
     .attr("width", w)
     .attr("height", h);
+
+countries = countriesGroup
+    .selectAll("path")
+    .data(json.features)
+    .enter()
+    .append("path")
+    .attr("d", path)
+    .attr("id", function (d, i) {
+        return "country" + d.properties.iso_a3;
+    })
+    .attr("class", "country")
+
+    .on("mouseover", function (d, i) {
+        d3.select("#countryLabel" + d.properties.iso_a3).style("display", "block");
+    })
+    .on("mouseout", function (d, i) {
+        d3.select("#countryLabel" + d.properties.iso_a3).style("display", "none");
+    })
+  
+    .on("click", function (d, i) {
+        d3.selectAll(".country").classed("country-on", false);
+        d3.select(this).classed("country-on", true);
+        boxZoom(path.bounds(d), path.centroid(d), 20);
+    });
