@@ -119,7 +119,7 @@ svg.append("path")
     .attr("fill", "#FFFFFF");
 
 // Add the data points
-svg.selectAll("dot")
+var path = svg.selectAll("dot")
     .data(data)
     .enter().append("circle")
     .attr("r", 5)
