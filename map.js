@@ -259,6 +259,7 @@ w = 3000;
             .projection(projection);
         Zoom
         Next we will define a
+
         function that applies a zoom and translation to our map.
 
         Within the“ zoomed”
@@ -289,6 +290,7 @@ w = 3000;
         .zoom()
         .on("zoom", zoomed);
         Finally we define a
+
         function that will create an object“ bbox” that contains the bounding box of a selected object.We will use this later to define the size of text.
 
         function getTextBox(selection) {
@@ -358,6 +360,7 @@ w = 3000;
 
         Finally we add click functionality that will add a class to the country clicked,
         having first ensured it is removed from all countries.We’ ll use this class to change the colour of the country via CSS.It also calls a
+
         function“ boxZoom” we have yet to define that takes the bounding box and central point of the country and zooms in to show that country.We will define this“ boxZoom”
         function later.
 
@@ -454,19 +457,22 @@ w = 3000;
             return d.bbox.height;
         });
 
-        function initiateZoom(){
+        function initiateZoom() {
             // Define a "min zoom"
-            minZoom = Math.max($("#map-holder").width()/w,$("#map-holder").height()/h);
+            minZoom = Math.max($("#map-holder").width() / w, $("#map-holder").height() / h);
             // Define a "max zoom" 
-            maxZoom = 20*minZoom;
+            maxZoom = 20 * minZoom;
             //apply these limits of 
             zoom
-               .scaleExtent([minZoom, maxZoom]) // set min/max extent of zoom
-               .translateExtent([[0, 0], [w, h]]) // set extent of panning
+                .scaleExtent([minZoom, maxZoom]) // set min/max extent of zoom
+                .translateExtent([
+                    [0, 0],
+                    [w, h]
+                ]) // set extent of panning
             ;
             // define X and Y offset for centre of map
-            midX = ($("#map-holder").width() - (minZoom*w))/2;
-            midY = ($("#map-holder").height() - (minZoom*h))/2;
-           // change zoom transform to min zoom and centre offsets
-            svg.call(zoom.transform,d3.zoomIdentity.translate(midX, midY).scale(minZoom));
-         }
+            midX = ($("#map-holder").width() - (minZoom * w)) / 2;
+            midY = ($("#map-holder").height() - (minZoom * h)) / 2;
+            // change zoom transform to min zoom and centre offsets
+            svg.call(zoom.transform, d3.zoomIdentity.translate(midX, midY).scale(minZoom));
+        }
