@@ -453,3 +453,20 @@ w = 3000;
         .attr("height", function (d) {
             return d.bbox.height;
         });
+
+        function initiateZoom(){
+            // Define a "min zoom"
+            minZoom = Math.max($("#map-holder").width()/w,$("#map-holder").height()/h);
+            // Define a "max zoom" 
+            maxZoom = 20*minZoom;
+            //apply these limits of 
+            zoom
+               .scaleExtent([minZoom, maxZoom]) // set min/max extent of zoom
+               .translateExtent([[0, 0], [w, h]]) // set extent of panning
+            ;
+            // define X and Y offset for centre of map
+            midX = ($("#map-holder").width() - (minZoom*w))/2;
+            midY = ($("#map-holder").height() - (minZoom*h))/2;
+           // change zoom transform to min zoom and centre offsets
+            svg.call(zoom.transform,d3.zoomIdentity.translate(midX, midY).scale(minZoom));
+         }
