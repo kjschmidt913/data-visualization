@@ -9,3 +9,8 @@ var projection = d3
     .center([0, 15])
     .scale([w / (2 * Math.PI)])
     .translate([w / 2, h / 2]);
+
+
+var path = d3
+    .geoPath()
+    .projection(projection);
