@@ -27,3 +27,9 @@ function zoomed() {
 var zoom = d3
     .zoom()
     .on("zoom", zoomed);
+
+function getTextBox(selection) {
+    selection.each(function (d) {
+        d.bbox = this.getBBox();
+    });
+}
