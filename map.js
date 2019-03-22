@@ -24,6 +24,6 @@ function zoomed() {
     );
 }
 
-var path = d3
-    .geoPath()
-    .projection(projection);
+var zoom = d3
+    .zoom()
+    .on("zoom", zoomed);
