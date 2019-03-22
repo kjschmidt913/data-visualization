@@ -9,12 +9,9 @@ var projection = d3
     .center([0, 15])
     .scale([w / (2 * Math.PI)])
     .translate([w / 2, h / 2]);
-
-
 var path = d3
     .geoPath()
     .projection(projection);
-
 function zoomed() {
     t = d3
         .event
@@ -23,7 +20,6 @@ function zoomed() {
         "transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")"
     );
 }
-
 var zoom = d3
     .zoom()
     .on("zoom", zoomed);
@@ -33,3 +29,9 @@ function getTextBox(selection) {
         d.bbox = this.getBBox();
     });
 }
+var svg = d3
+    .select("#map-holder")
+    .append("svg")
+    .attr("width", $("#map-holder").width())
+    .attr("height", $("#map-holder").height())
+    .call(zoom);
