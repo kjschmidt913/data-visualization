@@ -23,3 +23,7 @@ function zoomed() {
         "transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")"
     );
 }
+
+var path = d3
+    .geoPath()
+    .projection(projection);
