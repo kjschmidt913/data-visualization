@@ -47,7 +47,7 @@ default_height = 500 - margin.top - margin.bottom;
 default_ratio = default_width / default_height;
 
 // Determine current size, which determines vars
-function set_vars() {
+function set_size() {
     current_width = window.innerWidth;
     current_height = window.innerHeight;
     current_ratio = current_width / current_height;
@@ -65,7 +65,7 @@ function set_vars() {
     width = w - 50 - margin.right;
     height = h - margin.top - margin.bottom;
 };
-set_vars();
+set_size();
 //end responsive graph code
 
 
