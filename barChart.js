@@ -245,7 +245,7 @@ var initStackedBarChart = {
         default_ratio = default_width / default_height;
 
         // Determine current size, which determines vars
-        function set_vars() {
+        function set_size() {
             current_width = window.innerWidth;
             current_height = window.innerHeight;
             current_ratio = current_width / current_height;
@@ -264,7 +264,7 @@ var initStackedBarChart = {
             width = w - margin.left - margin.right;
             height = h - margin.top - margin.bottom;
         };
-        set_vars();
+        set_size();
         //end responsive graph code
 
         xScale = d3.scaleLinear().rangeRound([0, width]),
