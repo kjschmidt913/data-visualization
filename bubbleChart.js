@@ -214,7 +214,7 @@ default_height = 500;
 default_ratio = diameter / default_height;
 
 // Determine current size, which determines vars
-function set_vars() {
+function set_size() {
     current_width = window.innerWidth;
     current_height = window.innerHeight;
     current_ratio = current_width / current_height;
@@ -226,7 +226,7 @@ function set_vars() {
         diameter = 400;
     }
 };
-set_vars();
+set_size();
 
 var bubble = d3.pack(dataset)
     .size([diameter, diameter])
