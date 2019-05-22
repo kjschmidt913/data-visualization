@@ -22,6 +22,7 @@ I've written a few tutorials to help you implement these on your own.
 * [Creating a donut chart that switches between datasets](https://medium.com/@kj_schmidt/making-an-animated-donut-chart-with-d3-js-17751fde4679) 
 * [Show data on Mouse-Over](https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2) (Donut chart)
 * [Creating a Simple Scatter Plot](https://link.medium.com/dkxT5urwtU) 
+* [Hover Effects for Your Scatter Plot](https://medium.com/@kj_schmidt/hover-effects-for-your-scatter-plot-447df80ea116)
 
 ## Preview Live
 
