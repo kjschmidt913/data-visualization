@@ -23,6 +23,7 @@ I've written a few tutorials to help you implement these on your own.
 * [Show data on Mouse-Over](https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2) (Donut chart)
 * [Creating a Simple Scatter Plot](https://link.medium.com/dkxT5urwtU) 
 * [Hover Effects for Your Scatter Plot](https://medium.com/@kj_schmidt/hover-effects-for-your-scatter-plot-447df80ea116)
+* [Quick fix to make your d3.js graph responsive](https://medium.com/@kj_schmidt/quick-fix-to-make-your-d3-js-graph-responsive-bb63520cfba8)
 
 ## Preview Live
 
